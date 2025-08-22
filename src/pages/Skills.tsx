@@ -9,19 +9,10 @@ const Skills: React.FC = () => {
     {
       title: 'Frontend Development',
       skills: [
-        { name: 'React/Next.js', level: 95 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'CSS/Tailwind', level: 92 },
-        { name: 'Three.js/WebGL', level: 85 }
-      ]
-    },
-    {
-      title: 'Backend Development',
-      skills: [
-        { name: 'Node.js', level: 88 },
-        { name: 'Python', level: 82 },
-        { name: 'PostgreSQL', level: 85 },
-        { name: 'GraphQL', level: 80 }
+        { name: 'React/Next.js', level: 85 },
+        { name: 'TypeScript', level: 80 },
+        { name: 'CSS/Tailwind', level: 90 },
+        { name: 'Three.js/WebGL', level: 75 }
       ]
     },
     {
@@ -30,16 +21,16 @@ const Skills: React.FC = () => {
         { name: 'AWS/Vercel', level: 87 },
         { name: 'Docker', level: 83 },
         { name: 'Git/GitHub', level: 93 },
-        { name: 'Figma', level: 78 }
+        
       ]
     }
   ];
 
   const certifications = [
-    'AWS Certified Developer',
-    'React Advanced Certification',
-    'Google Cloud Professional',
-    'Adobe Creative Suite Expert'
+    'Oracle Cloud Infrastructure GEN AI Professional',
+    'Netacad(Cisco) Junnior Cyber Security Analyst',
+    'Ethical Hacker',
+   
   ];
 
   return (

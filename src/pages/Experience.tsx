@@ -7,43 +7,17 @@ import AnimatedText from '../components/ui/AnimatedText';
 const Experience: React.FC = () => {
   const experiences = [
     {
-      company: 'Tech Innovations Inc.',
-      position: 'Senior Full-Stack Developer',
-      period: '2022 - Present',
-      location: 'San Francisco, CA',
-      description: 'Lead development of enterprise applications serving 100K+ users. Architected microservices infrastructure and mentored junior developers.',
-      achievements: [
-        'Increased application performance by 40% through optimization',
-        'Led team of 5 developers on major product launches',
-        'Implemented CI/CD pipelines reducing deployment time by 60%'
-      ],
-      tech: ['React', 'Node.js', 'AWS', 'PostgreSQL', 'Docker']
-    },
-    {
-      company: 'Digital Solutions Ltd.',
-      position: 'Frontend Developer',
-      period: '2020 - 2022',
-      location: 'New York, NY',
-      description: 'Developed responsive web applications and collaborated with design teams to create exceptional user experiences.',
-      achievements: [
-        'Built 15+ responsive web applications',
-        'Improved user engagement by 35% through UX improvements',
-        'Established component library used across 10+ projects'
-      ],
-      tech: ['React', 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Firebase']
-    },
-    {
-      company: 'StartupXYZ',
-      position: 'Junior Developer',
-      period: '2019 - 2020',
+      company: 'AICTE- CISCO.',
+      position: 'Network Engineer',
+      period: 'Sept 2024 - Nov 2024',
       location: 'Remote',
-      description: 'Contributed to early-stage startup building innovative fintech solutions. Gained experience in rapid prototyping and agile development.',
+      description: 'Responsible for the design, implementation, and maintenance of network infrastructure for educational institutions.',
       achievements: [
-        'Developed MVP that secured $1M in seed funding',
-        'Implemented payment processing system',
-        'Contributed to mobile app with 10K+ downloads'
+        ' Developed and maintained network infrastructure for educational institutions.',
+        ' Implemented and maintained network security protocols for educational institutions.',
+        ' Developed and maintained network security protocols for educational institutions.'
       ],
-      tech: ['JavaScript', 'React', 'Python', 'MongoDB', 'Stripe API']
+      tech: ['Packet Tracer']
     }
   ];
 

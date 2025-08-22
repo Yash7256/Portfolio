@@ -8,50 +8,10 @@ import GlowingButton from '../components/ui/GlowingButton';
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and Stripe integration. Features include real-time inventory, payment processing, and admin dashboard.',
+      title: 'Tech Support LLM',
+      description: 'Tech Support LLM is a chatbot that can answer questions about technology and provide assistance to users.',
       tech: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: 'AI-Powered Dashboard',
-      description: 'Analytics dashboard with machine learning insights. Built with Next.js and Python backend, featuring real-time data visualization and predictive analytics.',
-      tech: ['Next.js', 'Python', 'TensorFlow', 'D3.js'],
-      image: 'https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: '3D Portfolio Website',
-      description: 'Interactive portfolio with Three.js animations and WebGL effects. Features immersive 3D elements and smooth page transitions.',
-      tech: ['React', 'Three.js', 'GSAP', 'WebGL'],
-      image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: 'Mobile Banking App',
-      description: 'Secure mobile banking application with biometric authentication, real-time transactions, and comprehensive financial management tools.',
-      tech: ['React Native', 'Firebase', 'Plaid API', 'Redux'],
-      image: 'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: 'Social Media Platform',
-      description: 'Real-time social platform with chat functionality, media sharing, and advanced privacy controls. Built with modern web technologies.',
-      tech: ['React', 'WebSocket', 'MongoDB', 'Redis'],
-      image: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: 'IoT Management System',
-      description: 'Comprehensive IoT device management platform with real-time monitoring, automated alerts, and detailed analytics dashboard.',
-      tech: ['Vue.js', 'MQTT', 'InfluxDB', 'Grafana'],
-      image: 'https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '',
       github: '#',
       demo: '#'
     }
