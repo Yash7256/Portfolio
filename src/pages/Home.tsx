@@ -6,9 +6,9 @@ import GlowingButton from '../components/ui/GlowingButton';
 
 const Home: React.FC = () => {
   const skills = [
-    { icon: Code, title: 'Full-Stack Development', desc: 'React, Node.js, TypeScript' },
-    { icon: Palette, title: 'UI/UX Design', desc: 'Modern, responsive interfaces' },
-    { icon: Zap, title: 'Performance Optimization', desc: 'Fast, efficient applications' }
+    { icon: Code, title: 'Frontend Development', desc: 'React.js, Tailwind CSS, TypeScript' },
+    { icon: Palette, title: 'Blockchain Development', desc: 'Solana, Ethereum' },
+    { icon: Zap, title: 'CyberSecurity', desc: 'Penetration Testing, Ethical Hacking' }
   ];
 
   const stats = [
