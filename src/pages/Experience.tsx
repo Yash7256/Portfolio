@@ -18,8 +18,8 @@ const Experience: React.FC = () => {
         ' Developed and maintained network security protocols for educational institutions.'
       ],
       tech: ['Packet Tracer'],
-      certificateLink: 'https://www.credly.com/badges/your_cisco_badge_id',
-      certificateName: 'CISCO Network Engineer Certification'
+      certificateLink: 'https://drive.google.com/file/d/1hVP2nKr6r2F0wzdSyGjA9GBEF_1OMRyf/view',
+      certificateName: 'CISCO AICTE VIRTUAL INTERNSHIP'
     }
   ];
 
