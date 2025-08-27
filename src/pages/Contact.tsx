@@ -1,31 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
-import GlowingButton from '../components/ui/GlowingButton';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
+  // Contact information data
   const contactInfo = [
     {
       icon: Mail,
@@ -87,90 +67,9 @@ const Contact: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <FloatingCard className="p-8" delay={0.2}>
-            <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-black/40 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/10 transition-all"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-black/40 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/10 transition-all"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-black/40 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/10 transition-all"
-                  placeholder="Project inquiry, collaboration, etc."
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-black/40 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/10 transition-all resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-              
-              <GlowingButton
-                variant="primary"
-                className="w-full flex items-center justify-center space-x-2"
-              >
-                <Send className="w-4 h-4" />
-                <span>Send Message</span>
-              </GlowingButton>
-            </form>
-          </FloatingCard>
-
-          {/* Contact Information */}
-          <div className="space-y-8">
+        <div className="max-w-2xl mx-auto space-y-8">
             {/* Contact Info */}
-            <FloatingCard className="p-8" delay={0.4}>
+            <FloatingCard className="p-8" delay={0.2}>
               <h3 className="text-2xl font-bold text-white mb-6">Get in Touch</h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => {
@@ -181,7 +80,7 @@ const Contact: React.FC = () => {
                       href={info.href}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.4 + index * 0.1 }}
+                      transition={{ delay: 0.2 + index * 0.1 }}
                       className="flex items-center space-x-4 group hover:text-gray-200 transition-colors"
                     >
                       <div className="w-12 h-12 bg-gradient-to-br from-white/10 to-white/5 rounded-full flex items-center justify-center border border-white/20 group-hover:border-white/30 transition-colors">
@@ -198,7 +97,7 @@ const Contact: React.FC = () => {
             </FloatingCard>
 
             {/* Social Links */}
-            <FloatingCard className="p-8" delay={0.6}>
+            <FloatingCard className="p-8" delay={0.3}>
               <h3 className="text-2xl font-bold text-white mb-6">Follow Me</h3>
               <div className="space-y-4">
                 {socialLinks.map((social, index) => {
@@ -209,7 +108,7 @@ const Contact: React.FC = () => {
                       href={social.href}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
                       className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group"
                     >
                       <div className="flex items-center space-x-3">
@@ -224,7 +123,7 @@ const Contact: React.FC = () => {
             </FloatingCard>
 
             {/* Availability */}
-            <FloatingCard className="p-8 text-center" delay={0.8}>
+            <FloatingCard className="p-8 text-center" delay={0.4}>
               <div className="mb-4">
                 <div className="w-3 h-3 bg-green-400 rounded-full mx-auto mb-3 animate-pulse" />
                 <h4 className="text-white font-semibold">Available for Projects</h4>
@@ -233,7 +132,6 @@ const Contact: React.FC = () => {
                 </p>
               </div>
             </FloatingCard>
-          </div>
         </div>
       </div>
     </div>

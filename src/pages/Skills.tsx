@@ -27,10 +27,22 @@ const Skills: React.FC = () => {
   ];
 
   const certifications = [
-    'Oracle Cloud Infrastructure GEN AI Professional',
-    'Netacad(Cisco) Junnior Cyber Security Analyst',
-    'Ethical Hacker',
-   
+    {
+      name: 'Oracle Cloud Infrastructure GEN AI Professional',
+      link: 'https://drive.google.com/file/d/18E3_0Bd9DHSmM82zEFVjluvYl_UyWt-b/view'
+    },
+    {
+      name: 'Netacad(Cisco) Junior Cyber Security Analyst',
+      link: 'https://drive.google.com/file/d/1_YC3piibB_cS04o76fOaefat-E6_6r0t/view'
+    },
+    {
+      name: 'Ethical Hacker',
+      link: 'https://drive.google.com/file/d/1Zm2KnhM4gV_e-MrGqB8BPGQeIpR__rPn/view'
+    },
+    {
+      name: 'AWS Cloud Foundations',
+      link: 'https://www.credly.com/badges/8c8a6a09-a2a0-414d-8e95-84143a004b5e/public_url'
+    }
   ];
 
   return (
@@ -88,7 +100,14 @@ const Skills: React.FC = () => {
                   className="flex items-center space-x-3"
                 >
                   <div className="w-2 h-2 bg-gradient-to-r from-white to-gray-400 rounded-full flex-shrink-0" />
-                  <span className="text-gray-300">{cert}</span>
+                  <a 
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-white transition-colors duration-300 border-b border-transparent hover:border-white/30"
+                  >
+                    {cert.name}
+                  </a>
                 </motion.div>
               ))}
             </div>

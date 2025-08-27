@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Award } from 'lucide-react';
+import { Calendar, MapPin, Award, ExternalLink } from 'lucide-react';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 
@@ -17,7 +17,9 @@ const Experience: React.FC = () => {
         ' Implemented and maintained network security protocols for educational institutions.',
         ' Developed and maintained network security protocols for educational institutions.'
       ],
-      tech: ['Packet Tracer']
+      tech: ['Packet Tracer'],
+      certificateLink: 'https://www.credly.com/badges/your_cisco_badge_id',
+      certificateName: 'CISCO Network Engineer Certification'
     }
   ];
 
@@ -70,6 +72,17 @@ const Experience: React.FC = () => {
                     </h3>
                     <h4 className="text-lg text-gray-300 mb-3">
                       {exp.company}
+                      {exp.certificateLink && (
+                        <a
+                          href={exp.certificateLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-3 inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-1" />
+                          View Certificate
+                        </a>
+                      )}
                     </h4>
                     
                     {/* Meta Info */}
@@ -133,20 +146,9 @@ const Experience: React.FC = () => {
           <FloatingCard className="p-8 text-center">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
-                <div className="text-3xl font-bold text-white mb-2">5+</div>
-                <div className="text-gray-400 text-sm">Years Experience</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-2">50+</div>
-                <div className="text-gray-400 text-sm">Projects Completed</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-2">15+</div>
-                <div className="text-gray-400 text-sm">Technologies</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-2">100%</div>
-                <div className="text-gray-400 text-sm">Client Satisfaction</div>
+                <div className="text-3xl font-bold text-white mb-2">OPEN SOURCE CONTRIBUTOR</div>
+                <div className="text-gray-400 text-sm">GSSOC'25 (Girlscript Summer Of code)</div>
+                 <div className="text-gray-400 text-sm">OSCI'25 (Open Source Contribution India)</div>
               </div>
             </div>
           </FloatingCard>

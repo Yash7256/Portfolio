@@ -52,7 +52,7 @@ const MotionLoader: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
-        Portfolio Loading...
+        Portfolio...
       </motion.p>
     </div>
   );
