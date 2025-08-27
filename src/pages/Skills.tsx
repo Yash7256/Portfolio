@@ -98,29 +98,27 @@ const Skills: React.FC = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
-                  className="group hover:bg-white/5 p-4 rounded-lg transition-all duration-300 border border-transparent hover:border-white/10"
+                  className="relative group p-4 rounded-lg hover:bg-white/5 transition-all duration-300"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-gradient-to-r from-white to-gray-400 rounded-full flex-shrink-0" />
-                      <span className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                        {cert.name}
-                      </span>
+                  <button
+                    onClick={() => window.open(cert.link, '_blank', 'noopener,noreferrer')}
+                    className="w-full text-left cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-gradient-to-r from-white to-gray-400 rounded-full flex-shrink-0" />
+                        <span className="text-gray-300 group-hover:text-white transition-colors duration-300">
+                          {cert.name}
+                        </span>
+                      </div>
+                      <div 
+                        className="flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 group-hover:text-white transition-colors duration-300"
+                      >
+                        <span className="text-sm">View Certificate</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </div>
                     </div>
-                    <a 
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open(cert.link, '_blank', 'noopener,noreferrer');
-                      }}
-                      className="flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer"
-                    >
-                      <span className="text-sm">View Certificate</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </div>
+                  </button>
                 </motion.div>
               ))}
             </div>

@@ -73,19 +73,13 @@ const Experience: React.FC = () => {
                     <h4 className="text-lg text-gray-300 mb-3">
                       {exp.company}
                       {exp.certificateLink && (
-                        <a
-                          href={exp.certificateLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            window.open(exp.certificateLink, '_blank', 'noopener,noreferrer');
-                          }}
-                          className="ml-3 inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer"
+                        <button
+                          onClick={() => window.open(exp.certificateLink, '_blank', 'noopener,noreferrer')}
+                          className="ml-3 inline-flex items-center px-3 py-1 text-sm bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white rounded-full transition-all duration-300"
                         >
                           <ExternalLink className="w-4 h-4 mr-1" />
                           View Certificate
-                        </a>
+                        </button>
                       )}
                     </h4>
                     
