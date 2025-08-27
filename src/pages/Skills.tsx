@@ -129,24 +129,14 @@ const Skills: React.FC = () => {
             <h3 className="text-2xl font-bold text-white mb-6">Experience Highlights</h3>
             <div className="space-y-6">
               <div className="border-l-2 border-white/20 pl-4">
-                <h4 className="text-white font-semibold">5+ Years</h4>
-                <p className="text-gray-300 text-sm">Professional Development</p>
+                <h4 className="text-white font-semibold">Open Soucre Contributor</h4>
+                <p className="text-gray-300 text-sm">Gssoc'25</p>
+                 <p className="text-gray-300 text-sm">OSCI'25</p>
               </div>
               
-              <div className="border-l-2 border-gray-400/40 pl-4">
-                <h4 className="text-white font-semibold">50+ Projects</h4>
-                <p className="text-gray-300 text-sm">Successfully Delivered</p>
-              </div>
+            
               
-              <div className="border-l-2 border-gray-500/40 pl-4">
-                <h4 className="text-white font-semibold">15+ Technologies</h4>
-                <p className="text-gray-300 text-sm">Mastered & Applied</p>
-              </div>
               
-              <div className="border-l-2 border-white/30 pl-4">
-                <h4 className="text-white font-semibold">Open Source</h4>
-                <p className="text-gray-300 text-sm">Active Contributor</p>
-              </div>
             </div>
           </FloatingCard>
         </div>

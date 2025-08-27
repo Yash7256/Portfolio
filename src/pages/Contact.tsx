@@ -10,19 +10,19 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@example.com',
-      href: 'mailto:hello@example.com'
+      value: 'aman.raj.ra23@ggits.net',
+      href: 'mailto:aman.raj.ra23@ggits.net'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+91 9155019845',
+      href: 'tel:+91 9155019845'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Jabalpur, Madhya Pradesh, India',
       href: '#'
     }
   ];
@@ -31,14 +31,14 @@ const Contact: React.FC = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: '#',
-      username: '@username'
+      href: 'https://github.com/Yash7256',
+      username: '@Yash7256'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: '#',
-      username: '/in/username'
+      href: 'https://www.linkedin.com/in/aman-raj-8571aa291/',
+      username: '/in/aman-raj-8571aa291/'
     },
     {
       icon: Twitter,
