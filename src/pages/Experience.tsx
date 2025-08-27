@@ -77,7 +77,11 @@ const Experience: React.FC = () => {
                           href={exp.certificateLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="ml-3 inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.open(exp.certificateLink, '_blank', 'noopener,noreferrer');
+                          }}
+                          className="ml-3 inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer"
                         >
                           <ExternalLink className="w-4 h-4 mr-1" />
                           View Certificate

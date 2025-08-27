@@ -111,7 +111,11 @@ const Skills: React.FC = () => {
                       href={cert.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(cert.link, '_blank', 'noopener,noreferrer');
+                      }}
+                      className="flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer"
                     >
                       <span className="text-sm">View Certificate</span>
                       <ExternalLink className="w-4 h-4" />
