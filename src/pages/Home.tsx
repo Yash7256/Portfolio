@@ -60,10 +60,16 @@ const Home: React.FC = () => {
             transition={{ delay: 2, duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
-            <GlowingButton variant="primary">
+            <GlowingButton 
+              variant="primary" 
+              onClick={() => window.location.href = '/projects'}
+            >
               View My Work
             </GlowingButton>
-            <GlowingButton variant="secondary">
+            <GlowingButton 
+              variant="secondary"
+              onClick={() => window.location.href = '/contact'}
+            >
               Get In Touch
             </GlowingButton>
           </motion.div>
@@ -286,7 +292,10 @@ const Home: React.FC = () => {
             transition={{ delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <GlowingButton variant="primary">
+            <GlowingButton 
+              variant="primary"
+              onClick={() => window.location.href = '/contact'}
+            >
               Let's Work Together
             </GlowingButton>
           </motion.div>

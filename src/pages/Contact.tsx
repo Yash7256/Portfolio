@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ExternalLink } from 'lucide-react';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 
@@ -103,20 +103,23 @@ const Contact: React.FC = () => {
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
-                    <motion.a
+                    <motion.button
                       key={index}
-                      href={social.href}
+                      onClick={() => window.open(social.href, '_blank', 'noopener,noreferrer')}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
-                      className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group"
+                      className="w-full flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group cursor-pointer"
                     >
                       <div className="flex items-center space-x-3">
                         <IconComponent className="w-5 h-5 text-white group-hover:text-gray-200" />
                         <span className="text-white font-medium">{social.label}</span>
                       </div>
-                      <span className="text-gray-400 text-sm">{social.username}</span>
-                    </motion.a>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-400 text-sm group-hover:text-white">{social.username}</span>
+                        <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white" />
+                      </div>
+                    </motion.button>
                   );
                 })}
               </div>
