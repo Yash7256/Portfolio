@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Zap } from 'lucide-react';
+import Navbar from '../components/Navbar';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 
@@ -8,12 +9,12 @@ const About: React.FC = () => {
   const features = [
     {
       icon: Code,
-      title: 'Frontend Development',
-      description: 'Developing responsive and user-friendly interfaces using React and Next.js.'
+      title: 'GEN AI',
+      description: 'Building AI models and applications using modern machine learning frameworks.'
     },
     {
       icon: Palette,
-      title: 'Defensive Security',
+      title: 'CyberSecurity',
       description: 'Defending against cyber threats and vulnerabilities using ethical hacking and penetration testing.'
     },
     {
@@ -25,6 +26,7 @@ const About: React.FC = () => {
 
   return (
     <div className="min-h-screen py-20 px-4">
+      <Navbar showAvatar={true} />
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

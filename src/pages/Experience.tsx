@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Award, ExternalLink } from 'lucide-react';
+import Navbar from '../components/Navbar';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 
@@ -25,6 +26,7 @@ const Experience: React.FC = () => {
 
   return (
     <div className="min-h-screen py-20 px-4">
+      <Navbar showAvatar={true} />
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div

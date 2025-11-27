@@ -1,29 +1,47 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import RadialMenu from './components/RadialMenu';
-import ThreeBackground from './components/ThreeBackground';
-import PageTransition from './components/PageTransition';
+import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import MotionLoader from './components/MotionLoader';
-import Home from './pages/Home';
-import About from './pages/About';
-import Skills from './pages/Skills';
-import Projects from './pages/Projects';
-import Experience from './pages/Experience';
-import Contact from './pages/Contact';
+
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Skills = lazy(() => import('./pages/Skills'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Experience = lazy(() => import('./pages/Experience'));
+const Contact = lazy(() => import('./pages/Contact'));
+
+// Lazy load PageTransition with a named export for React.lazy
+const PageTransition = lazy(() => import('./components/PageTransition'));
 
 function AnimatedRoutes() {
   const location = useLocation();
 
+  const renderRoute = (path: string, Component: React.ComponentType) => (
+    <Route 
+      key={path}
+      path={path}
+      element={
+        <Suspense fallback={<MotionLoader />}>
+          <LazyMotion features={domAnimation}>
+            <PageTransition>
+              <Component />
+            </PageTransition>
+          </LazyMotion>
+        </Suspense>
+      }
+    />
+  );
+
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-        <Route path="/skills" element={<PageTransition><Skills /></PageTransition>} />
-        <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-        <Route path="/experience" element={<PageTransition><Experience /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        {renderRoute("/", Home)}
+        {renderRoute("/about", About)}
+        {renderRoute("/skills", Skills)}
+        {renderRoute("/projects", Projects)}
+        {renderRoute("/experience", Experience)}
+        {renderRoute("/contact", Contact)}
       </Routes>
     </AnimatePresence>
   );
@@ -42,13 +60,15 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-black via-neutral-900 to-neutral-800">
-        <ThreeBackground />
-        <RadialMenu />
-        <AnimatedRoutes />
-      </div>
-    </Router>
+    <React.StrictMode>
+      <Router>
+        <div className="relative min-h-screen overflow-x-hidden bg-[#0a0a0f] text-white">
+          <Suspense fallback={<MotionLoader />}>
+            <AnimatedRoutes />
+          </Suspense>
+        </div>
+      </Router>
+    </React.StrictMode>
   );
 }
 
