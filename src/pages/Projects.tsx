@@ -293,6 +293,7 @@ const Projects: React.FC = () => {
             </GlowingButton>
           </motion.div>
         </motion.div>
+        </motion.div>
       </div>
     </div>
   );
