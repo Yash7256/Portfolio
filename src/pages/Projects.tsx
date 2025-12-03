@@ -46,26 +46,10 @@ const Projects: React.FC = () => {
 
   const projects = [
     {
-      title: 'Tech Support LLM',
-      description: 'Tech Support LLM is a chatbot that can answer questions about technology and provide assistance to users.',
-      tech: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: 'Portfolio Website',
-      description: 'A modern portfolio website built with React, TypeScript, and Framer Motion for smooth animations.',
-      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-      image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80',
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: 'E-commerce Platform',
-      description: 'A full-stack e-commerce platform with user authentication, product catalog, and payment processing.',
-      tech: ['Next.js', 'Node.js', 'MongoDB', 'Stripe'],
-      image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+      title: 'CyberSec',
+      description: 'CLI & WEB UI based port scanning software powered by AI',
+      tech: ['Python', 'Uvicorn', 'FastAPI'],
+      image: 'public/assets/images/cybersec.png',
       github: '#',
       demo: '#'
     }
