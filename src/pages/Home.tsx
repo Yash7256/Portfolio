@@ -18,21 +18,6 @@ const ProfileImage = React.memo(() => (
   </div>
 ));
 
-// Memoize the footer to prevent re-renders
-const Footer = React.memo(() => (
-  <footer className="fixed bottom-0 left-0 right-0 z-50 py-6 px-8">
-    <div className="flex justify-center">
-      <nav className="flex space-x-16">
-        <Link to="/" className="text-base text-gray-300 hover:text-white transition-colors duration-300 px-4 py-2">
-          Home
-        </Link>
-        <Link to="/about" className="text-base text-gray-300 hover:text-white transition-colors duration-300 px-4 py-2">
-          About
-        </Link>
-      </nav>
-    </div>
-  </footer>
-));
 
 const Home: React.FC = React.memo(() => {
   // Memoize the SplineBackground to prevent re-renders
@@ -56,7 +41,6 @@ const Home: React.FC = React.memo(() => {
       </motion.div>
       
       <Navbar />
-      <Footer />
     </div>
   );
 });

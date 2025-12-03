@@ -19,7 +19,7 @@ const Experience: React.FC = () => {
         ' Developed and maintained network security protocols for educational institutions.'
       ],
       tech: ['Packet Tracer'],
-      certificateLink: 'https://drive.google.com/file/d/1hVP2nKr6r2F0wzdSyGjA9GBEF_1OMRyf/view',
+      certificateLink: 'https://drive.google.com/uc?export=view&id=1hVP2nKr6r2F0wzdSyGjA9GBEF_1OMRyf',
       certificateName: 'CISCO AICTE VIRTUAL INTERNSHIP'
     }
   ];
@@ -75,13 +75,18 @@ const Experience: React.FC = () => {
                     <h4 className="text-lg text-gray-300 mb-3">
                       {exp.company}
                       {exp.certificateLink && (
-                        <button
-                          onClick={() => window.open(exp.certificateLink, '_blank', 'noopener,noreferrer')}
-                          className="ml-3 inline-flex items-center px-3 py-1 text-sm bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white rounded-full transition-all duration-300"
+                        <motion.button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(exp.certificateLink, '_blank', 'noopener,noreferrer');
+                          }}
+                          className="ml-3 inline-flex items-center px-3 py-1 text-sm bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white rounded-full transition-all duration-300 relative z-10"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
                           <ExternalLink className="w-4 h-4 mr-1" />
                           View Certificate
-                        </button>
+                        </motion.button>
                       )}
                     </h4>
                     
@@ -136,23 +141,6 @@ const Experience: React.FC = () => {
           ))}
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mt-16"
-        >
-          <FloatingCard className="p-8 text-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div>
-                <div className="text-3xl font-bold text-white mb-2">OPEN SOURCE CONTRIBUTOR</div>
-                <div className="text-gray-400 text-sm">GSSOC'25 (Girlscript Summer Of code)</div>
-                 <div className="text-gray-400 text-sm">OSCI'25 (Open Source Contribution India)</div>
-              </div>
-            </div>
-          </FloatingCard>
-        </motion.div>
       </div>
     </div>
   );

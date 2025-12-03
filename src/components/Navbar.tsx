@@ -97,6 +97,9 @@ const NavbarComponent: React.FC<NavbarProps> = ({ showAvatar = false }) => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          <NavLink to="/about" isActive={location.pathname === '/about'}>
+            About
+          </NavLink>
           <NavLink to="/experience" isActive={location.pathname === '/experience'}>
             Experience
           </NavLink>
