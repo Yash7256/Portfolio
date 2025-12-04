@@ -1,32 +1,32 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, Award, ExternalLink } from 'lucide-react';
-import Navbar from '../components/Navbar';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, MapPin, ExternalLink, ChevronRight, ChevronDown, Award } from 'lucide-react';
 import FloatingCard from '../components/ui/FloatingCard';
-import AnimatedText from '../components/ui/AnimatedText';
 
 const Experience: React.FC = () => {
+  const [expandedCard, setExpandedCard] = React.useState<number | null>(null);
+
   const experiences = [
     {
-      company: 'AICTE- CISCO.',
+      company: 'AICTE- CISCO',
       position: 'Network Engineer',
       period: 'Sept 2024 - Nov 2024',
       location: 'Remote',
       description: 'Responsible for the design, implementation, and maintenance of network infrastructure for educational institutions.',
       achievements: [
-        ' Developed and maintained network infrastructure for educational institutions.',
-        ' Implemented and maintained network security protocols for educational institutions.',
-        ' Developed and maintained network security protocols for educational institutions.'
+        'Designed and deployed secure network infrastructure for 50+ educational institutions',
+        'Reduced network downtime by 40% through proactive monitoring and maintenance',
+        'Implemented automated network configuration management systems',
+        'Conducted security audits and vulnerability assessments'
       ],
-      tech: ['Packet Tracer'],
+      tech: ['Cisco IOS', 'Network Security', 'BGP/OSPF', 'VLAN', 'Firewall', 'Packet Tracer'],
       certificateLink: 'https://drive.google.com/uc?export=view&id=1hVP2nKr6r2F0wzdSyGjA9GBEF_1OMRyf',
       certificateName: 'CISCO AICTE VIRTUAL INTERNSHIP'
     }
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <Navbar showAvatar={true} />
+    <div className="min-h-screen py-20 px-4 overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
@@ -34,109 +34,181 @@ const Experience: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <AnimatedText
-            text="Professional Experience"
-            className="text-5xl md:text-7xl font-bold mb-6"
-            gradient={true}
-          />
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <div className="flex items-center justify-center mb-12">
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+            <h2 className="mx-6 text-2xl font-bold text-white">Professional Experience</h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+          </div>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed text-center">
             A journey of growth, learning, and creating impactful solutions across diverse industries.
           </p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white via-gray-400 to-transparent transform md:-translate-x-1/2" />
-
+        {/* Experience Cards */}
+        <div className="space-y-8">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              className={`relative flex items-center mb-16 ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative group"
             >
-              {/* Timeline Dot */}
-              <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-gradient-to-r from-white to-gray-400 rounded-full border-4 border-black transform md:-translate-x-1/2 z-10" />
-
-              {/* Content Card */}
-              <div className={`w-full md:w-1/2 ml-16 md:ml-0 ${
-                index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
-              }`}>
-                <FloatingCard className="p-6" delay={index * 0.2 + 0.2}>
-                  {/* Header */}
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      {exp.position}
-                    </h3>
-                    <h4 className="text-lg text-gray-300 mb-3">
-                      {exp.company}
-                      {exp.certificateLink && (
-                        <motion.button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(exp.certificateLink, '_blank', 'noopener,noreferrer');
-                          }}
-                          className="ml-3 inline-flex items-center px-3 py-1 text-sm bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white rounded-full transition-all duration-300 relative z-10"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <ExternalLink className="w-4 h-4 mr-1" />
-                          View Certificate
-                        </motion.button>
-                      )}
-                    </h4>
-                    
-                    {/* Meta Info */}
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4" />
-                        <span>{exp.period}</span>
+              {/* Gradient Accent */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl opacity-0 group-hover:opacity-100 blur transition duration-300 group-hover:duration-200" />
+              
+              <FloatingCard 
+                className="p-0 overflow-hidden relative bg-gradient-to-br from-gray-800/50 to-gray-900/70 border border-gray-700/50"
+                delay={index * 0.1}
+              >
+                <div className="p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="text-2xl font-bold text-white mb-1">
+                            {exp.position}
+                          </h3>
+                          <h4 className="text-lg text-cyan-300 font-medium mb-3">
+                            {exp.company}
+                          </h4>
+                        </div>
+                        
+                        {exp.certificateLink && (
+                          <motion.a
+                            href={exp.certificateLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-3 inline-flex items-center px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-cyan-600/30 to-blue-600/30 text-cyan-300 hover:text-white rounded-full border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 relative z-10 group/cert"
+                            whileHover={{ 
+                              scale: 1.05,
+                              boxShadow: '0 0 15px rgba(34, 211, 238, 0.2)'
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <Award className="w-3.5 h-3.5 mr-1.5" />
+                            <span>View Certificate</span>
+                            <ExternalLink className="w-3 h-3 ml-1.5 opacity-0 -translate-x-1 group-hover/cert:opacity-100 group-hover/cert:translate-x-0 transition-all duration-300" />
+                          </motion.a>
+                        )}
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="w-4 h-4" />
-                        <span>{exp.location}</span>
+                      
+                      {/* Meta Info */}
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-300 mb-4">
+                        <div className="flex items-center space-x-1.5 bg-gray-800/50 px-2.5 py-1 rounded-full border border-gray-700/50">
+                          <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                          <span>{exp.period}</span>
+                        </div>
+                        <div className="flex items-center space-x-1.5 bg-gray-800/50 px-2.5 py-1 rounded-full border border-gray-700/50">
+                          <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                          <span>{exp.location}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-300 leading-relaxed mb-4">
-                    {exp.description}
-                  </p>
-
-                  {/* Achievements */}
-                  <div className="mb-4">
-                    <h5 className="text-white font-semibold mb-2 flex items-center">
-                      <Award className="w-4 h-4 mr-2" />
-                      Key Achievements
-                    </h5>
-                    <ul className="space-y-2">
-                      {exp.achievements.map((achievement, achIndex) => (
-                        <li key={achIndex} className="text-gray-300 text-sm flex items-start">
-                          <div className="w-1.5 h-1.5 bg-gradient-to-r from-white to-gray-400 rounded-full flex-shrink-0 mt-2 mr-3" />
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
+                  <p className="text-gray-300 mb-5 leading-relaxed">{exp.description}</p>
+                  
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {exp.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 text-xs bg-white/10 text-gray-300 rounded-full border border-white/20"
+                  {exp.tech && exp.tech.length > 0 && (
+                    <div className="mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        {exp.tech.map((tech, i) => (
+                          <motion.span 
+                            key={i}
+                            className="px-3 py-1.5 text-xs font-medium rounded-full bg-gradient-to-r from-gray-800/80 to-gray-900/80 text-gray-200 border border-gray-700/50 backdrop-blur-sm hover:border-cyan-400/50 transition-all duration-300 cursor-default"
+                            whileHover={{ 
+                              y: -2,
+                              boxShadow: '0 5px 15px -5px rgba(34, 211, 238, 0.2)'
+                            }}
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Toggle Button */}
+                  <button 
+                    onClick={() => setExpandedCard(expandedCard === index ? null : index)}
+                    className="mt-4 flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-200 group"
+                  >
+                    {expandedCard === index ? (
+                      <>
+                        <span>Show less</span>
+                        <ChevronDown className="w-4 h-4 ml-1 transform transition-transform duration-200 group-hover:translate-y-0.5" />
+                      </>
+                    ) : (
+                      <>
+                        <span>View achievements</span>
+                        <ChevronRight className="w-4 h-4 ml-1 transform transition-transform duration-200 group-hover:translate-x-1" />
+                      </>
+                    )}
+                  </button>
+                </div>
+                
+                {/* Expandable Content */}
+                <AnimatePresence>
+                  {expandedCard === index && (
+                    <motion.div
+                  initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                  animate={{ 
+                    opacity: 1, 
+                    height: 'auto',
+                    marginTop: '1.5rem',
+                    transition: { 
+                      opacity: { duration: 0.3 },
+                      height: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] },
+                      marginTop: { duration: 0.4 }
+                    }
+                  }}
+                  exit={{ 
+                    opacity: 0, 
+                    height: 0, 
+                    marginTop: 0,
+                    transition: { 
+                      opacity: { duration: 0.2 },
+                      height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
+                      marginTop: { duration: 0.3 }
+                    }
+                  }}
+                  className="overflow-hidden border-t border-gray-700/50 pt-6"
+                >
+                  <h5 className="text-sm font-semibold text-cyan-300 mb-3 flex items-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mr-2"></span>
+                    KEY ACHIEVEMENTS
+                  </h5>
+                  <ul className="space-y-3">
+                    {exp.achievements.map((achievement, i) => (
+                      <motion.li 
+                        key={i} 
+                        className="flex items-start"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ 
+                          opacity: 1, 
+                          x: 0,
+                          transition: { 
+                            delay: 0.1 * i,
+                            duration: 0.3 
+                          } 
+                        }}
                       >
-                        {tech}
-                      </span>
+                        <span className="text-cyan-400 mr-3 mt-1">
+                          <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 6L5.59808 0H0.401924L3 6Z" fill="currentColor"/>
+                          </svg>
+                        </span>
+                        <span className="text-gray-300">{achievement}</span>
+                      </motion.li>
                     ))}
-                  </div>
-                </FloatingCard>
-              </div>
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </FloatingCard>
             </motion.div>
           ))}
         </div>

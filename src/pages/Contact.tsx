@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Github, Linkedin, Twitter, ExternalLink } from 'lucide-react';
-import Navbar from '../components/Navbar';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 
@@ -50,8 +49,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <Navbar showAvatar={true} />
+    <div className="min-h-screen py-20 px-4 overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -59,13 +57,13 @@ const Contact: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <AnimatedText
-            text="Let's Connect"
-            className="text-5xl md:text-7xl font-bold mb-6"
-            gradient={true}
-          />
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
+          <div className="flex items-center justify-center mb-12">
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+            <h2 className="mx-6 text-2xl font-bold text-white">Let's Connect</h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+          </div>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed text-center">
+            Feel free to reach out for collaborations or just a friendly hello!
           </p>
         </motion.div>
 

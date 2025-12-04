@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Zap } from 'lucide-react';
-import Navbar from '../components/Navbar';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 
@@ -25,8 +24,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <Navbar showAvatar={true} />
+    <div className="min-h-screen py-20 px-4 overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -34,12 +32,12 @@ const About: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <AnimatedText
-            text="About Me"
-            className="text-5xl md:text-7xl font-bold mb-6"
-            gradient={true}
-          />
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <div className="flex items-center justify-center mb-12">
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+            <h2 className="mx-6 text-2xl font-bold text-white">About Me</h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+          </div>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed text-center">
             I’m a 3rd-year Computer Engineering student passionate about blockchain, cybersecurity, and frontend development. I enjoy exploring modern web technologies and building secure, innovative digital solutions. With a strong foundation in coding and problem-solving, I focus on writing clean, efficient code and turning ideas into impactful projects.
           </p>
         </motion.div>

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
-import Navbar from '../components/Navbar';
+import RadialMenu from '../components/RadialMenu';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 import GlowingButton from '../components/ui/GlowingButton';
@@ -56,9 +56,9 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4 overflow-x-hidden">
-      <Navbar showAvatar={true} />
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen py-20 px-4 overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative">
+      <RadialMenu />
+      <div className="max-w-4xl mx-auto">
         <motion.div 
           ref={ref}
           initial="hidden"
@@ -77,8 +77,22 @@ const Projects: React.FC = () => {
             gradient={true}
           />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            A showcase of innovative solutions and technical expertise across various domains.
+            A showcase of my professional journey and technical expertise across various domains.
           </p>
+        </motion.div>
+
+        {/* Projects Section */}
+        <motion.div 
+          className="mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <div className="flex items-center justify-center mb-12">
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+            <h2 className="mx-6 text-2xl font-bold text-white">Featured Projects</h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
+          </div>
         </motion.div>
 
         {/* Projects Grid */}

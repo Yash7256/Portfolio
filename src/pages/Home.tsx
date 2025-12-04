@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
 import SplineBackground from '../components/SplineBackground';
 
 // Memoize the profile image to prevent re-renders
@@ -26,7 +25,7 @@ const Home: React.FC = React.memo(() => {
   ), []);
 
   return (
-    <div className="min-h-screen w-full text-white font-sans relative overflow-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative overflow-hidden">
       {MemoizedSpline}
       
       {/* Avatar - Balanced Position */}
@@ -39,8 +38,6 @@ const Home: React.FC = React.memo(() => {
       >
         <ProfileImage />
       </motion.div>
-      
-      <Navbar />
     </div>
   );
 });
