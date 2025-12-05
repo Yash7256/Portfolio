@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import MotionLoader from './components/MotionLoader';
+import Navigation from './components/Navigation';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -76,9 +77,12 @@ function App() {
     <React.StrictMode>
       <Router>
         <div className="relative min-h-screen overflow-x-hidden bg-[#0a0a0f] text-white">
-          <Suspense fallback={<MotionLoader />}>
-            <AnimatedRoutes />
-          </Suspense>
+          <Navigation />
+          <div className="pt-20"> {/* Add padding to account for fixed navigation */}
+            <Suspense fallback={<MotionLoader />}>
+              <AnimatedRoutes />
+            </Suspense>
+          </div>
         </div>
       </Router>
     </React.StrictMode>

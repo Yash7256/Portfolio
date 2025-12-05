@@ -29,6 +29,7 @@ const cybersec1 = '/assets/images/projects/cybersec/01.png';
 const cybersec2 = '/assets/images/projects/cybersec/02cybersec.png';
 const cybersec3 = '/assets/images/projects/cybersec/03cybersec.png';
 const cybersec4 = '/assets/images/projects/cybersec/04cybersec.png';
+const cybersec5 = '/assets/images/projects/cybersec/cybersec.png';
 
 export const projects: Project[] = [
   {
@@ -60,11 +61,13 @@ export const projects: Project[] = [
       'User authentication and role-based access control',
       'API for integration with other security tools'
     ],
-    image: cybersec1,
+    image: cybersec5, // Using cybersec.png as the main image
     screenshots: [
+      cybersec1,
       cybersec2,
       cybersec3,
-      cybersec4
+      cybersec4,
+      cybersec5
     ],
     github: 'https://github.com/yourusername/cybersec',
     demo: 'https://cybersec-demo.example.com',

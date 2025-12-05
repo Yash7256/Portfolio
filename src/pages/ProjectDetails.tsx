@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, Github, BookOpen } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, BookOpen, Image as ImageIcon } from 'lucide-react';
 import { projects, Project } from '../data';
 import { HoverBorderGradientButton } from '@/components/hover-border-gradient-demo';
+import AutoMovingGallery from '@/components/AutoMovingGallery';
 
 const ProjectDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -119,7 +120,26 @@ const ProjectDetails: React.FC = () => {
               </div>
             </div>
 
-            {project.image && (
+            {project.screenshots && project.screenshots.length > 0 ? (
+              <div className="w-full md:w-1/2 lg:w-2/5">
+                <h3 className="text-xl font-semibold mb-4 flex items-center text-cyan-400">
+                  <ImageIcon className="w-5 h-5 mr-2" />
+                  Gallery
+                </h3>
+                <div className="rounded-xl overflow-hidden">
+                  <AutoMovingGallery 
+                    images={project.screenshots.map((src: string, index: number) => ({
+                      src,
+                      alt: `${project.title} screenshot ${index + 1}`
+                    }))}
+                    speed={0.8}
+                    direction="left"
+                    pauseOnHover={true}
+                    className="h-64"
+                  />
+                </div>
+              </div>
+            ) : (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -171,32 +191,6 @@ const ProjectDetails: React.FC = () => {
                         <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2" />
                       </div>
                       <p className="ml-3 text-gray-300">{feature}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.section>
-            )}
-
-            {/* Screenshots/Demos */}
-            {project.screenshots && project.screenshots.length > 0 && (
-              <motion.section 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="space-y-6"
-              >
-                <h2 className="text-2xl font-bold text-cyan-400">Gallery</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {project.screenshots.map((screenshot: string, index: number) => (
-                    <div 
-                      key={index}
-                      className="rounded-lg overflow-hidden border border-white/10 hover:border-cyan-400/30 transition-colors"
-                    >
-                      <img
-                        src={screenshot}
-                        alt={`${project.title} screenshot ${index + 1}`}
-                        className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                      />
                     </div>
                   ))}
                 </div>
