@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SplineBackground from '../components/SplineBackground';
 import { LinkPreview } from '@/components/ui/link-preview';
 
@@ -92,13 +93,13 @@ const Home: React.FC = React.memo(() => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <a 
-              href="/#projects" 
+            <Link 
+              to="/projects" 
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 transition-colors duration-200"
             >
               View My Work
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+            </Link>
           </motion.div>
         </div>
       </div>

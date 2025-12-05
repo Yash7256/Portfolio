@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
-import MotionLoader from './components/MotionLoader';
 import Navigation from './components/Navigation';
 
 // Lazy load pages
@@ -24,7 +23,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <Home />
@@ -33,7 +32,7 @@ const AnimatedRoutes = () => {
           </Suspense>
         } />
         <Route path="/about" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <About />
@@ -42,7 +41,7 @@ const AnimatedRoutes = () => {
           </Suspense>
         } />
         <Route path="/skills" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <Skills />
@@ -51,7 +50,7 @@ const AnimatedRoutes = () => {
           </Suspense>
         } />
         <Route path="/projects" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <Projects />
@@ -60,7 +59,7 @@ const AnimatedRoutes = () => {
           </Suspense>
         } />
         <Route path="/projects/:id" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <ProjectDetails />
@@ -69,7 +68,7 @@ const AnimatedRoutes = () => {
           </Suspense>
         } />
         <Route path="/experience" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <Experience />
@@ -78,7 +77,7 @@ const AnimatedRoutes = () => {
           </Suspense>
         } />
         <Route path="/experience/:id" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <ExperienceDetail />
@@ -87,7 +86,7 @@ const AnimatedRoutes = () => {
           </Suspense>
         } />
         <Route path="/contact" element={
-          <Suspense fallback={<MotionLoader />}>
+          <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
                 <Contact />
@@ -109,7 +108,7 @@ function App() {
   }, []);
 
   if (loading) {
-    return <MotionLoader />;
+    return null;
   }
 
   return (
@@ -118,7 +117,7 @@ function App() {
         <div className="relative min-h-screen overflow-x-hidden bg-[#0a0a0f] text-white">
           <Navigation />
           <div className="pt-20"> {/* Add padding to account for fixed navigation */}
-            <Suspense fallback={<MotionLoader />}>
+            <Suspense fallback={null}>
               <AnimatedRoutes />
             </Suspense>
           </div>

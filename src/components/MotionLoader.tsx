@@ -1,60 +1,57 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { TextHoverEffect } from './ui/text-hover-effect';
 
 const MotionLoader: React.FC = () => {
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black via-neutral-900 to-neutral-800">
-      <div className="relative">
-        {/* Outer Ring */}
-        <motion.div
-          className="w-24 h-24 rounded-full border-2 border-white/20 border-t-white"
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: 'linear'
-          }}
-        />
-        
-        {/* Inner Ring */}
-        <motion.div
-          className="absolute inset-2 w-20 h-20 rounded-full border-2 border-gray-400/20 border-b-gray-400"
-          animate={{ rotate: -360 }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            ease: 'linear'
-          }}
-        />
-        
-        {/* Center Dot */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-2 h-2 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2"
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [1, 0.5, 1]
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-        />
-        
-        {/* Shine Effect */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse" />
-      </div>
-      
-      {/* Loading Text */}
-      <motion.p
-        className="absolute bottom-32 text-white/80 text-lg font-light tracking-wider"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+    <AnimatePresence>
+      <motion.div 
+        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-black via-neutral-900 to-neutral-800 p-4"
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        Portfolio...
-      </motion.p>
-    </div>
+        <div className="w-full max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full flex justify-center mb-8"
+          >
+            <div className="w-full max-w-2xl">
+              <TextHoverEffect 
+                text="Loading Portfolio"
+                duration={0.5}
+              />
+            </div>
+          </motion.div>
+          
+          <div className="w-full max-w-md mx-auto h-1.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full overflow-hidden">
+            <motion.div 
+              className="h-full bg-white"
+              initial={{ width: '0%' }}
+              animate={{ width: '100%' }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                repeatType: 'reverse' as const,
+                ease: 'easeInOut' 
+              }}
+            />
+          </div>
+          
+          <motion.p 
+            className="mt-8 text-cyan-200/70 text-sm font-mono tracking-widest text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            Crafting your experience...
+          </motion.p>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
