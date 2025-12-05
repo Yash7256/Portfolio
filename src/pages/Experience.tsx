@@ -78,17 +78,12 @@ const Experience: React.FC = () => {
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="relative group">
-                            <Link 
+                            <Link
                               to={`/experience/${exp.id}`}
-                              className="inline-flex items-center text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                window.location.href = `/experience/${exp.id}`;
-                              }}
+                              className="group relative inline-flex items-center text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors duration-200"
                             >
                               View Details
-                              <ArrowRight className="h-4 w-4 ml-1" />
+                              <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" />
                             </Link>
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
                           </div>
