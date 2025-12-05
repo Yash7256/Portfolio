@@ -36,16 +36,16 @@ export function HoverBorderGradient({
   };
 
   const movingMap: Record<Direction, string> = {
-    TOP: "radial-gradient(30% 60% at 50% 0%, hsl(192, 100%, 60%) 0%, rgba(50, 117, 248, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
-    LEFT: "radial-gradient(30% 60% at 0% 50%, hsl(192, 100%, 60%) 0%, rgba(50, 117, 248, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+    TOP: "radial-gradient(30% 60% at 50% 0%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+    LEFT: "radial-gradient(30% 60% at 0% 50%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
     BOTTOM:
-      "radial-gradient(30% 60% at 50% 100%, hsl(192, 100%, 60%) 0%, rgba(50, 117, 248, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+      "radial-gradient(30% 60% at 50% 100%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
     RIGHT:
-      "radial-gradient(30% 60% at 100% 50%, hsl(192, 100%, 60%) 0%, rgba(50, 117, 248, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+      "radial-gradient(30% 60% at 100% 50%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
   };
 
   const highlight =
-    "radial-gradient(100% 200% at 50% 50%, #00d4ff 0%, #3275F8 50%, rgba(0, 0, 0, 0) 100%)";
+    "radial-gradient(100% 200% at 50% 50%, #10b981 0%, #059669 50%, rgba(0, 0, 0, 0) 100%)";
 
   useEffect(() => {
     if (!hovered) {

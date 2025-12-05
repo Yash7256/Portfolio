@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base Colors */
+    --background: 0 0% 4%;      /* #0a0a0a - Pure dark background */
+    --foreground: 0 0% 98%;    /* #fafafa - Almost white text */
+    
+    /* Primary Colors - Emerald */
+    --primary: 160 84% 39%;    /* #10b981 - Vibrant emerald */
+    --primary-foreground: 0 0% 98%;
+    
+    /* Secondary Colors - Amber */
+    --secondary: 38 92% 50%;   /* #f59e0b - Warm amber */
+    --secondary-foreground: 0 0% 98%;
+    
+    /* Accent Colors - Rose */
+    --accent: 346 77% 50%;     /* #e11d48 - Deep rose */
+    --accent-foreground: 0 0% 98%;
+    
+    /* Muted Colors - For subtle elements */
+    --muted: 0 0% 15%;         /* #262626 - Dark gray */
+    --muted-foreground: 0 0% 65%;  /* #a6a6a6 - Light gray text */
+    
+    /* Destructive Colors - For errors */
+    --destructive: 0 84% 60%;   /* #ef4444 - Red */
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Border Colors */
+    --border: 0 0% 20%;        /* #333333 - Dark gray */
+    --input: 0 0% 25%;         /* #404040 - Slightly lighter gray for inputs */
+    --ring: 160 84% 39%;       /* Match primary for focus rings */
+    
+    /* Card Colors */
+    --card: 0 0% 8%;           /* #141414 - Slightly lighter than background */
+    --card-foreground: 0 0% 98%;
+    
+    /* Popover */
+    --popover: 0 0% 6%;        /* #0f0f0f - Slightly lighter than background */
+    --popover-foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+/* Animation Classes */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

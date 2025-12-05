@@ -27,7 +27,7 @@ const ProjectDetails: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="animate-pulse text-2xl text-cyan-400">Loading project details...</div>
+        <div className="animate-pulse text-2xl text-green-400">Loading project details...</div>
       </div>
     );
   }
@@ -39,7 +39,7 @@ const ProjectDetails: React.FC = () => {
         <p className="text-gray-400 mb-6">The project you're looking for doesn't exist or has been removed.</p>
         <Link 
           to="/projects" 
-          className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg flex items-center gap-2 transition-colors"
+          className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects
@@ -57,6 +57,7 @@ const ProjectDetails: React.FC = () => {
             as={Link}
             to="/projects"
             icon={ArrowLeft}
+            className="bg-green-700 hover:bg-green-800"
           >
             Back to Projects
           </HoverBorderGradientButton>
@@ -71,20 +72,22 @@ const ProjectDetails: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div className="flex-1">
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent mb-4 bg-gradient-to-r from-green-400 to-lime-400">
                 {project.title}
               </h1>
               <p className="text-xl text-gray-300 mb-6">{project.tagline || project.description}</p>
               
               <div className="flex flex-wrap gap-2 mb-6">
-                {project.tech.map((tech: string, index: number) => (
-                  <span 
-                    key={index}
-                    className="px-3 py-1 text-sm bg-white/5 text-cyan-300 rounded-full border border-cyan-400/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                {project.tech.map((tech: string, index: number) => {
+                                  return (
+                    <span 
+                      key={index}
+                      className="px-3 py-1 text-sm rounded-full border bg-green-900/40 text-green-200 border-green-500/40"
+                    >
+                      {tech}
+                    </span>
+                  );
+                })}
               </div>
 
               <div className="flex flex-wrap gap-4">
@@ -122,10 +125,10 @@ const ProjectDetails: React.FC = () => {
 
             {project.screenshots && project.screenshots.length > 0 ? (
               <div className="w-full md:w-1/2 lg:w-2/5">
-                <h3 className="text-xl font-semibold mb-4 flex items-center text-cyan-400">
-                  <ImageIcon className="w-5 h-5 mr-2" />
-                  Gallery
-                </h3>
+                <h3 className="text-xl font-semibold mb-4 flex items-center text-green-400">
+                <ImageIcon className="w-5 h-5 mr-2" />
+                Gallery
+              </h3>
                 <div className="rounded-xl overflow-hidden">
                   <AutoMovingGallery 
                     images={project.screenshots.map((src: string, index: number) => ({
@@ -167,7 +170,9 @@ const ProjectDetails: React.FC = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10"
             >
-              <h2 className="text-2xl font-bold mb-4 text-cyan-400">About the Project</h2>
+              <h2 className="text-2xl font-bold mb-4 text-green-400">
+              About the Project
+            </h2>
               <div className="prose prose-invert max-w-none">
                 <p className="text-gray-300 leading-relaxed">
                   {project.longDescription || project.description}
@@ -183,12 +188,14 @@ const ProjectDetails: React.FC = () => {
                 transition={{ delay: 0.3, duration: 0.5 }}
                 className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10"
               >
-                <h2 className="text-2xl font-bold mb-6 text-cyan-400">Key Features</h2>
+                <h2 className="text-2xl font-bold mb-6 text-green-400">
+                  Key Features
+                </h2>
                 <div className="grid gap-4">
                   {project.features.map((feature: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2" />
+                        <div className="w-2 h-2 rounded-full bg-green-400 mt-2" />
                       </div>
                       <p className="ml-3 text-gray-300">{feature}</p>
                     </div>
@@ -207,7 +214,9 @@ const ProjectDetails: React.FC = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10"
             >
-              <h3 className="text-lg font-semibold mb-4 text-cyan-400">Tech Stack</h3>
+              <h3 className="text-lg font-semibold mb-4 text-green-400">
+                Tech Stack
+              </h3>
               <div className="space-y-3">
                 {project.techDetails?.map((tech: { name: string; items: string[] }, index: number) => (
                   <div key={index}>
@@ -216,7 +225,7 @@ const ProjectDetails: React.FC = () => {
                       {tech.items.map((item, i) => (
                         <span 
                           key={i}
-                          className="px-3 py-1 text-xs bg-white/5 text-gray-300 rounded-full border border-white/5"
+                          className="px-3 py-1 text-xs rounded-full bg-green-900/30 text-green-200 border border-green-500/40"
                         >
                           {item}
                         </span>
@@ -234,7 +243,9 @@ const ProjectDetails: React.FC = () => {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10 space-y-4"
             >
-              <h3 className="text-lg font-semibold text-cyan-400">Project Links</h3>
+              <h3 className="text-lg font-semibold text-green-400">
+                Project Links
+              </h3>
               <div className="space-y-3">
                 {project.links?.map((link: { label: string; url: string; icon?: string }, index: number) => (
                   <a
@@ -242,9 +253,9 @@ const ProjectDetails: React.FC = () => {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors"
+                    className="flex items-center gap-3 px-4 py-2 rounded-lg border border-green-600/30 bg-green-900/20 hover:bg-green-800/30 hover:border-green-500/50 transition-colors"
                   >
-                    {link.icon && <span className="text-cyan-400">{link.icon}</span>}
+                    {link.icon && <span className="text-green-400">{link.icon}</span>}
                     <span>{link.label}</span>
                     <ExternalLink className="w-4 h-4 ml-auto text-gray-400" />
                   </a>
@@ -260,7 +271,9 @@ const ProjectDetails: React.FC = () => {
                 transition={{ delay: 0.5, duration: 0.5 }}
                 className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10 space-y-4"
               >
-                <h3 className="text-lg font-semibold text-cyan-400">Project Stats</h3>
+                <h3 className="text-lg font-semibold text-green-400">
+                  Project Stats
+                </h3>
                 <div className="space-y-3">
                   {Object.entries(project.stats).map(([key, value]) => (
                     <div key={key} className="flex justify-between items-center">
