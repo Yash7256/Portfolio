@@ -8,6 +8,7 @@ const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Skills = lazy(() => import('./pages/Skills'));
 const Projects = lazy(() => import('./pages/Projects'));
+const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
 const Experience = lazy(() => import('./pages/Experience'));
 const Contact = lazy(() => import('./pages/Contact'));
 
@@ -40,6 +41,18 @@ function AnimatedRoutes() {
         {renderRoute("/about", About)}
         {renderRoute("/skills", Skills)}
         {renderRoute("/projects", Projects)}
+        <Route 
+          path="/projects/:id"
+          element={
+            <Suspense fallback={<MotionLoader />}>
+              <LazyMotion features={domAnimation}>
+                <PageTransition>
+                  <ProjectDetails />
+                </PageTransition>
+              </LazyMotion>
+            </Suspense>
+          }
+        />
         {renderRoute("/experience", Experience)}
         {renderRoute("/contact", Contact)}
       </Routes>

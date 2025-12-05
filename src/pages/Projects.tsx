@@ -1,10 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import RadialMenu from '../components/RadialMenu';
 import FloatingCard from '../components/ui/FloatingCard';
 import AnimatedText from '../components/ui/AnimatedText';
 import GlowingButton from '../components/ui/GlowingButton';
+import { projects } from '../data/projects';
 
 import type { Variants } from 'framer-motion';
 
@@ -44,16 +46,7 @@ const Projects: React.FC = () => {
     }
   }, [controls, isInView]);
 
-  const projects = [
-    {
-      title: 'CyberSec',
-      description: 'CLI & WEB UI based port scanning software powered by AI',
-      tech: ['Python', 'Uvicorn', 'FastAPI'],
-      image: 'public/assets/images/cybersec.png',
-      github: '#',
-      demo: '#'
-    }
-  ];
+  // Using projects data from the projects.ts file
 
   return (
     <div className="min-h-screen py-20 px-4 overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative">
@@ -109,11 +102,11 @@ const Projects: React.FC = () => {
               className="group"
             >
               <FloatingCard 
-                className="overflow-hidden h-full flex flex-col" 
+                className="overflow-hidden h-full flex flex-col group" 
                 delay={index * 0.1}
               >
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
+                {/* Project Image with Link to Details */}
+                <Link to={`/projects/${project.id}`} className="block h-48 overflow-hidden">
                   <motion.div
                     className="h-full w-full"
                     initial={{ scale: 1 }}
@@ -128,17 +121,20 @@ const Projects: React.FC = () => {
                     />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Action Buttons */}
-                  <motion.div 
-                    className="absolute top-4 right-4 flex space-x-2"
-                    initial={{ opacity: 0, y: -10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
+                </Link>
+                
+                {/* Action Buttons */}
+                <motion.div 
+                  className="absolute top-4 right-4 flex space-x-2 z-10"
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  {project.github && (
                     <motion.a
                       href={project.github}
+                      onClick={(e) => e.stopPropagation()}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ 
@@ -151,33 +147,38 @@ const Projects: React.FC = () => {
                     >
                       <Github className="w-4 h-4 text-white" />
                     </motion.a>
+                  )}
+                  {project.demo && (
                     <motion.a
                       href={project.demo}
+                      onClick={(e) => e.stopPropagation()}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ 
                         scale: 1.1,
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)'
+                        backgroundColor: 'rgba(74, 222, 128, 0.2)'
                       }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2 bg-black/40 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 shadow-lg"
+                      className="p-2 bg-black/40 backdrop-blur-sm rounded-full border border-white/20 hover:bg-green-500/20 transition-all duration-300 shadow-lg"
                       aria-label={`View ${project.title} demo`}
                     >
                       <ExternalLink className="w-4 h-4 text-white" />
                     </motion.a>
-                  </motion.div>
-                </div>
+                  )}
+                </motion.div>
 
                 {/* Project Content */}
                 <div className="p-6 flex-1 flex flex-col">
-                  <motion.h3 
-                    className="text-xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors"
-                    whileHover={{ x: 5 }}
-                  >
-                    {project.title}
-                  </motion.h3>
+                  <Link to={`/projects/${project.id}`} className="group">
+                    <motion.h3 
+                      className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors"
+                      whileHover={{ x: 5 }}
+                    >
+                      {project.title}
+                    </motion.h3>
+                  </Link>
                   <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">
-                    {project.description}
+                    {project.tagline || project.description}
                   </p>
 
                   {/* Tech Stack */}
@@ -188,21 +189,36 @@ const Projects: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
                   >
-                    {project.tech.map((tech, techIndex) => (
+                    {project.tech.slice(0, 4).map((tech, techIndex) => (
                       <motion.span
                         key={techIndex}
-                        className="px-3 py-1 text-xs bg-white/5 text-gray-300 rounded-full border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-default"
+                        className="px-3 py-1 text-xs bg-white/5 text-cyan-300 rounded-full border border-cyan-400/20 hover:bg-cyan-500/10 transition-all duration-300 cursor-default"
                         whileHover={{ 
                           y: -2,
                           scale: 1.05,
-                          backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                          backgroundColor: 'rgba(34, 211, 238, 0.1)'
                         }}
                         transition={{ type: 'spring', stiffness: 500 }}
                       >
                         {tech}
                       </motion.span>
                     ))}
+                    {project.tech.length > 4 && (
+                      <span className="px-2 py-1 text-xs bg-white/5 text-gray-400 rounded-full">
+                        +{project.tech.length - 4} more
+                      </span>
+                    )}
                   </motion.div>
+                  
+                  <div className="mt-auto pt-4 border-t border-white/5">
+                    <Link 
+                      to={`/projects/${project.id}`}
+                      className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors group"
+                    >
+                      View Details
+                      <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
 
                   {/* Learn More Button */}
                   <motion.div
