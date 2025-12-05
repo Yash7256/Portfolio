@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import FloatingCard from '../components/ui/FloatingCard';
 import SkillBar from '../components/ui/SkillBar';
-import AnimatedText from '../components/ui/AnimatedText';
 import { ExternalLink } from 'lucide-react';
 
 const Skills: React.FC = () => {
@@ -49,21 +48,23 @@ const Skills: React.FC = () => {
   return (
     <div className="min-h-screen py-20 px-4 overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div
+        {/* Certifications */}
+        <motion.div 
+          className="mt-20 mb-8 text-center"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center mb-12">
+          <div className="flex items-center justify-center mb-4">
             <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
             <h2 className="mx-6 text-2xl font-bold text-white">Skills & Expertise</h2>
             <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
           </div>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed text-center">
-            Technologies and tools I work with to bring ideas to life.
-          </p>
         </motion.div>
+        <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed text-center">
+          Technologies and tools I work with to bring ideas to life.
+        </p>
 
         {/* Skills Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
@@ -90,7 +91,7 @@ const Skills: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Certifications */}
           <FloatingCard className="p-8" delay={0.8}>
-            <h3 className="text-2xl font-bold text-white mb-6">Certifications</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">Skills & Expertise</h3>
             <div className="space-y-4">
               {certifications.map((cert, index) => (
                 <motion.div

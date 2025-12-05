@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, ExternalLink, ChevronRight, ChevronDown, Award } from 'lucide-react';
+import { Calendar, MapPin, ExternalLink, ChevronRight, ChevronDown, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import FloatingCard from '../components/ui/FloatingCard';
 
 const Experience: React.FC = () => {
@@ -8,6 +9,7 @@ const Experience: React.FC = () => {
 
   const experiences = [
     {
+      id: 'cisco-aicte',
       company: 'AICTE- CISCO',
       position: 'Network Engineer',
       period: 'Sept 2024 - Nov 2024',
@@ -21,7 +23,8 @@ const Experience: React.FC = () => {
       ],
       tech: ['Cisco IOS', 'Network Security', 'BGP/OSPF', 'VLAN', 'Firewall', 'Packet Tracer'],
       certificateLink: 'https://drive.google.com/uc?export=view&id=1hVP2nKr6r2F0wzdSyGjA9GBEF_1OMRyf',
-      certificateName: 'CISCO AICTE VIRTUAL INTERNSHIP'
+      certificateName: 'CISCO AICTE VIRTUAL INTERNSHIP',
+      shortDescription: 'Network infrastructure design and implementation for educational institutions.'
     }
   ];
 
@@ -34,12 +37,12 @@ const Experience: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center mb-12">
+          <div className="flex items-center justify-center mb-4">
             <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
             <h2 className="mx-6 text-2xl font-bold text-white">Professional Experience</h2>
             <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
           </div>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed text-center">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             A journey of growth, learning, and creating impactful solutions across diverse industries.
           </p>
         </motion.div>
@@ -65,33 +68,44 @@ const Experience: React.FC = () => {
                 <div className="p-6">
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="text-2xl font-bold text-white mb-1">
-                            {exp.position}
-                          </h3>
-                          <h4 className="text-lg text-cyan-300 font-medium mb-3">
+                          <h3 className="text-xl font-semibold text-white">{exp.position}</h3>
+                          <div className="flex items-center text-cyan-400">
                             {exp.company}
-                          </h4>
+                            <ExternalLink className="h-4 w-4 ml-2" />
+                          </div>
                         </div>
-                        
-                        {exp.certificateLink && (
-                          <motion.a
-                            href={exp.certificateLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="ml-3 inline-flex items-center px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-cyan-600/30 to-blue-600/30 text-cyan-300 hover:text-white rounded-full border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 relative z-10 group/cert"
-                            whileHover={{ 
-                              scale: 1.05,
-                              boxShadow: '0 0 15px rgba(34, 211, 238, 0.2)'
+                        <div className="flex items-center space-x-2">
+                          <div className="relative group">
+                            <Link 
+                              to={`/experience/${exp.id}`}
+                              className="inline-flex items-center text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                window.location.href = `/experience/${exp.id}`;
+                              }}
+                            >
+                              View Details
+                              <ArrowRight className="h-4 w-4 ml-1" />
+                            </Link>
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
+                          </div>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedCard(expandedCard === index ? null : index);
                             }}
-                            whileTap={{ scale: 0.98 }}
+                            className="p-1 -m-1"
                           >
-                            <Award className="w-3.5 h-3.5 mr-1.5" />
-                            <span>View Certificate</span>
-                            <ExternalLink className="w-3 h-3 ml-1.5 opacity-0 -translate-x-1 group-hover/cert:opacity-100 group-hover/cert:translate-x-0 transition-all duration-300" />
-                          </motion.a>
-                        )}
+                            {expandedCard === index ? (
+                              <ChevronDown className="h-5 w-5 text-gray-400 hover:text-cyan-400 transition-colors" />
+                            ) : (
+                              <ChevronRight className="h-5 w-5 text-gray-400 hover:text-cyan-400 transition-colors" />
+                            )}
+                          </button>
+                        </div>
                       </div>
                       
                       {/* Meta Info */}
@@ -109,7 +123,7 @@ const Experience: React.FC = () => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-300 mb-5 leading-relaxed">{exp.description}</p>
+                  <p className="text-gray-400 mb-4">{exp.shortDescription || exp.description}</p>
                   
                   {/* Technologies */}
                   {exp.tech && exp.tech.length > 0 && (

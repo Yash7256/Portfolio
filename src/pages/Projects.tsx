@@ -4,7 +4,6 @@ import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RadialMenu from '../components/RadialMenu';
 import FloatingCard from '../components/ui/FloatingCard';
-import AnimatedText from '../components/ui/AnimatedText';
 import GlowingButton from '../components/ui/GlowingButton';
 import { projects } from '../data/projects';
 
@@ -58,34 +57,20 @@ const Projects: React.FC = () => {
           animate={controls}
           variants={container}
         >
-        {/* Header */}
+        {/* Header with blue lines */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <AnimatedText
-            text="Featured Projects"
-            className="text-5xl md:text-7xl font-bold mb-6"
-            gradient={true}
-          />
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            A showcase of my professional journey and technical expertise across various domains.
-          </p>
-        </motion.div>
-
-        {/* Projects Section */}
-        <motion.div 
-          className="mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <div className="flex items-center justify-center mb-12">
+          <div className="flex items-center justify-center mb-4">
             <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
             <h2 className="mx-6 text-2xl font-bold text-white">Featured Projects</h2>
             <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
           </div>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            A showcase of my professional journey and technical expertise across various domains.
+          </p>
         </motion.div>
 
         {/* Projects Grid */}
