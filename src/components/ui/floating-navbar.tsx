@@ -4,7 +4,7 @@ import {
   motion,
   AnimatePresence,
 } from "framer-motion";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 
 // Get current route for active state
@@ -138,17 +138,18 @@ export const FloatingNav = ({
             {navItems.map((navItem, idx) => {
               const isActive = pathname === navItem.link;
               return (
-                <a
+                <Link
                   key={`link-${idx}`}
-                  href={navItem.link}
+                  to={navItem.link}
                   className={cn(
-                    "relative px-5 py-2.5 rounded-full transition-all duration-200 group",
+                    "relative px-5 py-2.5 rounded-full transition-all duration-200 group block",
                     isActive 
                       ? 'text-neutral-900' 
                       : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
                   )}
                   onMouseEnter={() => setHoveredItem(idx)}
-                  onMouseLeave={() => setHoveredItem(null)}>
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
                   <div className="flex items-center space-x-2">
                     {navItem.icon}
                     <span className="text-sm">{navItem.name}</span>
