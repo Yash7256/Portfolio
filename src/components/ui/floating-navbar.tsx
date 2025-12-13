@@ -168,7 +168,7 @@ export const FloatingNav = ({
                       }}
                     />
                   )}
-                </a>
+                </Link>
               );
             })}
           </div>
