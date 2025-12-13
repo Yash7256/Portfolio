@@ -136,7 +136,7 @@ export function LinkPreview({ url, children, className = "", ...props }: LinkPre
                       <img 
                         src={previewData.image} 
                         alt="Preview" 
-                        className={`${previewData.isProfilePic ? 'w-full h-full rounded-full object-cover border-2 border-cyan-400/50' : 'max-h-40 w-auto rounded-lg shadow-lg'}`}
+                        className={`${previewData.isProfilePic ? 'w-full h-full rounded-full object-cover border-2 border-purple-500/50' : 'max-h-40 w-auto rounded-lg shadow-lg'}`}
                         style={{ maxWidth: previewData.isProfilePic ? '128px' : '200px' }}
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -148,7 +148,7 @@ export function LinkPreview({ url, children, className = "", ...props }: LinkPre
                   )}
                 </div>
               ) : (
-                <div className="p-4 text-center text-gray-400 text-sm">
+                <div className="p-4 text-center text-gray-400 text-sm font-medium hover:text-[#7c3aed] transition-colors duration-200">
                   Couldn't load preview
                 </div>
               )}

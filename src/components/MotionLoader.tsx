@@ -27,7 +27,7 @@ const MotionLoader: React.FC = () => {
             </div>
           </motion.div>
           
-          <div className="w-full max-w-md mx-auto h-1.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full overflow-hidden">
+          <div className="w-full max-w-md mx-auto h-1.5 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full overflow-hidden">
             <motion.div 
               className="h-full bg-white"
               initial={{ width: '0%' }}
@@ -42,7 +42,7 @@ const MotionLoader: React.FC = () => {
           </div>
           
           <motion.p 
-            className="mt-8 text-cyan-200/70 text-sm font-mono tracking-widest text-center"
+            className="mt-8 text-purple-200/70 text-sm font-mono tracking-widest text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}

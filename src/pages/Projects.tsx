@@ -2,10 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import RadialMenu from '../components/RadialMenu';
 import FloatingCard from '../components/ui/FloatingCard';
 import GlowingButton from '../components/ui/GlowingButton';
 import { projects } from '../data/projects';
+import { AnimatedSectionHeading } from '../components/ui/AnimatedSectionHeading';
 
 import type { Variants } from 'framer-motion';
 
@@ -48,8 +48,7 @@ const Projects: React.FC = () => {
   // Using projects data from the projects.ts file
 
   return (
-    <div className="min-h-screen py-20 px-4 overflow-x-hidden bg-gradient-to-b from-gray-900 to-gray-950 relative">
-      <RadialMenu />
+    <div className="min-h-screen py-20 px-4 overflow-x-hidden relative">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           ref={ref}
@@ -63,12 +62,8 @@ const Projects: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center mb-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
-            <h2 className="mx-6 text-2xl font-bold text-white">Featured Projects</h2>
-            <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent flex-1" />
-          </div>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <AnimatedSectionHeading title="Featured Projects" />
+          <p className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed">
             A showcase of my professional journey and technical expertise across various domains.
           </p>
         </motion.div>
@@ -82,8 +77,6 @@ const Projects: React.FC = () => {
             <motion.div 
               key={index}
               variants={item}
-              whileHover="hover"
-              whileTap="tap"
               className="group"
             >
               <FloatingCard 
@@ -130,7 +123,7 @@ const Projects: React.FC = () => {
                       className="p-2 bg-black/40 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 shadow-lg"
                       aria-label={`View ${project.title} on GitHub`}
                     >
-                      <Github className="w-4 h-4 text-white" />
+                      <Github className="w-4 h-4 " />
                     </motion.a>
                   )}
                   {project.demo && (
@@ -147,7 +140,7 @@ const Projects: React.FC = () => {
                       className="p-2 bg-black/40 backdrop-blur-sm rounded-full border border-white/20 hover:bg-green-500/20 transition-all duration-300 shadow-lg"
                       aria-label={`View ${project.title} demo`}
                     >
-                      <ExternalLink className="w-4 h-4 text-white" />
+                      <ExternalLink className="w-4 h-4 " />
                     </motion.a>
                   )}
                 </motion.div>
@@ -156,13 +149,13 @@ const Projects: React.FC = () => {
                 <div className="p-6 flex-1 flex flex-col">
                   <Link to={`/projects/${project.id}`} className="group">
                     <motion.h3 
-                      className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors"
+                      className="text-2xl font-bold  mb-3 group-hover:text-[#7c3aed] transition-colors"
                       whileHover={{ x: 5 }}
                     >
                       {project.title}
                     </motion.h3>
                   </Link>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">
+                  <p className=" text-sm leading-relaxed mb-4 flex-1">
                     {project.tagline || project.description}
                   </p>
 
@@ -177,11 +170,11 @@ const Projects: React.FC = () => {
                     {project.tech.slice(0, 4).map((tech, techIndex) => (
                       <motion.span
                         key={techIndex}
-                        className="px-3 py-1 text-xs bg-white/5 text-cyan-300 rounded-full border border-cyan-400/20 hover:bg-cyan-500/10 transition-all duration-300 cursor-default"
+                        className="px-3 py-1 text-xs bg-white/5  rounded-full border border-violet-600/20 hover:bg-violet-600/10 transition-all duration-300 cursor-default"
                         whileHover={{ 
                           y: -2,
                           scale: 1.05,
-                          backgroundColor: 'rgba(34, 211, 238, 0.1)'
+                          backgroundColor: 'rgba(124, 58, 237, 0.1)'
                         }}
                         transition={{ type: 'spring', stiffness: 500 }}
                       >
@@ -189,7 +182,7 @@ const Projects: React.FC = () => {
                       </motion.span>
                     ))}
                     {project.tech.length > 4 && (
-                      <span className="px-2 py-1 text-xs bg-white/5 text-gray-400 rounded-full">
+                      <span className="px-2 py-1 text-xs bg-white/5  rounded-full">
                         +{project.tech.length - 4} more
                       </span>
                     )}
@@ -198,7 +191,7 @@ const Projects: React.FC = () => {
                   <div className="mt-auto pt-4 border-t border-white/5">
                     <Link 
                       to={`/projects/${project.id}`}
-                      className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors group"
+                      className="inline-flex items-center text-sm font-medium hover:transition-colors group"
                     >
                       View Details
                       <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -253,7 +246,7 @@ const Projects: React.FC = () => {
             }}
           />
           <motion.p 
-            className="text-gray-400 mb-8 text-lg"
+            className=" mb-8 text-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

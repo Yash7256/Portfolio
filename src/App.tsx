@@ -1,10 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
-import Navigation from './components/Navigation';
+import { Home as HomeIcon, User, Code, Briefcase, Mail, BookOpen, ArrowUpRight } from 'lucide-react';
+import { FloatingNav } from './components/ui/floating-navbar';
 
 // Lazy load pages
-const Home = lazy(() => import('./pages/Home'));
+const HomePage = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Skills = lazy(() => import('./pages/Skills'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -26,7 +27,7 @@ const AnimatedRoutes = () => {
           <Suspense fallback={null}>
             <LazyMotion features={domAnimation}>
               <PageTransition>
-                <Home />
+                <HomePage />
               </PageTransition>
             </LazyMotion>
           </Suspense>
@@ -111,12 +112,22 @@ function App() {
     return null;
   }
 
+  const navItems = [
+    { name: 'Home', link: '/', icon: <HomeIcon className="w-4 h-4" /> },
+    { name: 'About', link: '/about', icon: <User className="w-4 h-4" /> },
+    { name: 'Experience', link: '/experience', icon: <BookOpen className="w-4 h-4" /> },
+    { name: 'Skills', link: '/skills', icon: <Code className="w-4 h-4" /> },
+    { name: 'Projects', link: '/projects', icon: <Briefcase className="w-4 h-4" /> },
+    { name: 'Contact', link: '/contact', icon: <Mail className="w-4 h-4" /> },
+    { name: 'Blog', link: 'https://amanraj-blog.vercel.app/', icon: <ArrowUpRight className="w-4 h-4" /> },
+  ];
+
   return (
     <React.StrictMode>
       <Router>
-        <div className="relative min-h-screen overflow-x-hidden bg-[#0a0a0f] text-white">
-          <Navigation />
-          <div className="pt-20"> {/* Add padding to account for fixed navigation */}
+        <div className="relative min-h-screen overflow-x-hidden">
+          <FloatingNav navItems={navItems} />
+          <div className="pt-4">
             <Suspense fallback={null}>
               <AnimatedRoutes />
             </Suspense>

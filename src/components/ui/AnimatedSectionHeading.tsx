@@ -15,7 +15,7 @@ export function AnimatedSectionHeading({
   title,
   subtitle,
   className = "",
-  lineColor = "from-cyan-400/30",
+  lineColor = "from-purple-500/30",
   lineWidth = 200,
   lineHeight = 1,
 }: AnimatedSectionHeadingProps) {

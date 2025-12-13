@@ -23,8 +23,7 @@ const AutoMovingGallery: React.FC<AutoMovingGalleryProps> = ({
   className = '',
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout>();
+    const intervalRef = useRef<NodeJS.Timeout>();
   
   // Process images to ensure they have the correct format
   const processedImages = images.map(img => ({
@@ -60,18 +59,8 @@ const AutoMovingGallery: React.FC<AutoMovingGalleryProps> = ({
   }, [startAutoAdvance]);
   
   // Pause on hover
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-  };
-  
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    startAutoAdvance();
-  };
-  
+    
+    
   const handleNext = () => {
     setCurrentIndex(prev => (prev + 1) % processedImages.length);
     // Restart auto-advance timer after manual navigation
@@ -94,9 +83,7 @@ const AutoMovingGallery: React.FC<AutoMovingGalleryProps> = ({
   return (
     <div 
       className={`relative w-full overflow-hidden group ${className}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+          >
       {/* Main image display */}
       <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-900/20">
         <AnimatePresence mode="wait">
@@ -135,7 +122,7 @@ const AutoMovingGallery: React.FC<AutoMovingGalleryProps> = ({
                 onClick={() => setCurrentIndex(index)}
                 className={`flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition-all ${
                   index === currentIndex 
-                    ? 'border-cyan-400 scale-105' 
+                    ? 'border-purple-500 scale-105' 
                     : 'border-transparent hover:border-white/30'
                 }`}
               >

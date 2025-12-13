@@ -10,8 +10,13 @@ interface FloatingCardProps {
 const FloatingCard: React.FC<FloatingCardProps> = ({ children, className = '', delay = 0 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 50, scale: 0.95, boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)' }}
+      animate={{ 
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)' 
+      }}
       transition={{
         type: 'spring',
         stiffness: 100,
@@ -19,14 +24,17 @@ const FloatingCard: React.FC<FloatingCardProps> = ({ children, className = '', d
         delay
       }}
       whileHover={{ 
-        y: -5,
-        scale: 1.02,
-        transition: { type: 'spring', stiffness: 400, damping: 25 }
+        y: -8,
+        scale: 1.03,
+        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+        transition: { type: 'spring', stiffness: 300, damping: 20 }
       }}
-      className={`relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl group ${className}`}
-      style={{
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+      whileTap={{
+        scale: 0.98,
+        y: -2,
+        transition: { type: 'spring', stiffness: 500, damping: 30 }
       }}
+      className={`relative overflow-hidden rounded-xl backdrop-blur-lg bg-white/60 border border-gray-200/80 shadow-lg group dark:bg-gray-800/60 dark:border-white/10 ${className}`}
     >
       {/* Shine Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out transform rotate-12" />

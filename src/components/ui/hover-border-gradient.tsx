@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -36,16 +36,16 @@ export function HoverBorderGradient({
   };
 
   const movingMap: Record<Direction, string> = {
-    TOP: "radial-gradient(30% 60% at 50% 0%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
-    LEFT: "radial-gradient(30% 60% at 0% 50%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+    TOP: "radial-gradient(30% 60% at 50% 0%, hsl(264, 84%, 58%) 0%, rgba(124, 58, 237, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+    LEFT: "radial-gradient(30% 60% at 0% 50%, hsl(264, 84%, 58%) 0%, rgba(124, 58, 237, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
     BOTTOM:
-      "radial-gradient(30% 60% at 50% 100%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+      "radial-gradient(30% 60% at 50% 100%, hsl(264, 84%, 58%) 0%, rgba(124, 58, 237, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
     RIGHT:
-      "radial-gradient(30% 60% at 100% 50%, hsl(142, 100%, 60%) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
+      "radial-gradient(30% 60% at 100% 50%, hsl(264, 84%, 58%) 0%, rgba(124, 58, 237, 0.8) 50%, rgba(255, 255, 255, 0) 100%)",
   };
 
   const highlight =
-    "radial-gradient(100% 200% at 50% 50%, #10b981 0%, #059669 50%, rgba(0, 0, 0, 0) 100%)";
+    "radial-gradient(100% 200% at 50% 50%, #a855f7 0%, #7c3aed 50%, rgba(0, 0, 0, 0) 100%)";
 
   useEffect(() => {
     if (!hovered) {
@@ -57,19 +57,19 @@ export function HoverBorderGradient({
   }, [hovered]);
   return (
     <Tag
-      onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => {
+      onMouseEnter={() => {
         setHovered(true);
       }}
       onMouseLeave={() => setHovered(false)}
       className={cn(
-        "relative flex rounded-full border-2 border-transparent content-center bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300 dark:from-cyan-500/10 dark:to-blue-500/10 dark:hover:from-cyan-500/20 dark:hover:to-blue-500/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-[2px] decoration-clone w-fit shadow-lg hover:shadow-cyan-500/20 dark:shadow-blue-500/10 dark:hover:shadow-blue-500/20",
+        "relative flex rounded-full border-2 border-transparent content-center bg-gradient-to-r from-violet-600/20 to-purple-500/20 hover:from-violet-600/30 hover:to-purple-500/30 transition-all duration-300 dark:from-violet-600/10 dark:to-purple-500/10 dark:hover:from-violet-600/20 dark:hover:to-purple-500/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-[2px] decoration-clone w-fit shadow-lg hover:shadow-violet-600/20 dark:shadow-purple-500/10 dark:hover:shadow-purple-500/20",
         containerClassName
       )}
       {...props}
     >
       <div
         className={cn(
-          "w-auto text-white z-10 bg-black px-4 py-2 rounded-[inherit]",
+          "w-auto text-black dark:text-white z-10 bg-transparent px-4 py-2 rounded-[inherit]",
           className
         )}
       >
@@ -97,7 +97,7 @@ export function HoverBorderGradient({
           scale: { duration: 0.2 }
         }}
       />
-      <div className="bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]" />
+      <div className="bg-white/80 dark:bg-black/80 backdrop-blur-sm absolute z-1 flex-none inset-[2px] rounded-[100px]" />
     </Tag>
   );
 }

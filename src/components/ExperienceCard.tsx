@@ -46,13 +46,20 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
       viewport={{ once: true, margin: '-20%' }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
       whileHover={{
-        borderColor: 'rgba(77, 212, 172, 0.3)',
-        boxShadow: '0 10px 40px -10px rgba(77, 212, 172, 0.15)',
-        transform: 'translateY(-2px)'
+        y: -8,
+        scale: 1.03,
+        borderColor: 'rgba(124, 58, 237, 0.3)',
+        boxShadow: '0 12px 40px -10px rgba(124, 58, 237, 0.15)',
+        transition: { type: 'spring', stiffness: 300, damping: 20 }
+      }}
+      whileTap={{
+        scale: 0.98,
+        y: -2,
+        transition: { type: 'spring', stiffness: 500, damping: 30 }
       }}
     >
       {/* Certificate Thumbnail */}
-      <div className="absolute left-8 top-8 w-20 h-20 rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-cyan-400/30">
+      <div className="absolute left-8 top-8 w-20 h-20 rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-violet-600/30">
         {certificateUrl ? (
           <img 
             src={certificateUrl} 
@@ -73,7 +80,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
           href={certificateUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-8 right-8 flex items-center space-x-2 text-cyan-400 text-sm font-medium bg-cyan-400/10 hover:bg-cyan-400/20 px-4 py-2 rounded-lg border border-cyan-400/20 transition-all duration-300 group-hover:border-cyan-400/40 group-hover:shadow-lg group-hover:shadow-cyan-400/10"
+          className="absolute top-8 right-8 flex items-center space-x-2 text-violet-600 text-sm font-medium bg-violet-600/10 hover:bg-violet-600/20 px-4 py-2 rounded-lg border border-violet-600/20 transition-all duration-300 group-hover:border-violet-600/40 group-hover:shadow-lg group-hover:shadow-violet-600/10"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -87,17 +94,17 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         {/* Job Title & Company */}
         <div className="mb-1">
           <h3 className="text-2xl font-bold text-white">{title}</h3>
-          <p className="text-lg text-cyan-300 font-medium">{company}</p>
+          <p className="text-lg text-purple-400 font-medium">{company}</p>
         </div>
         
         {/* Meta Info */}
         <div className="flex flex-wrap items-center gap-3 my-4">
           <span className="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700/50">
-            <Calendar className="w-4 h-4 mr-1.5 text-cyan-400 flex-shrink-0" />
+            <Calendar className="w-4 h-4 mr-1.5 text-purple-500 flex-shrink-0" />
             {duration}
           </span>
           <span className="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700/50">
-            <MapPin className="w-4 h-4 mr-1.5 text-cyan-400 flex-shrink-0" />
+            <MapPin className="w-4 h-4 mr-1.5 text-purple-500 flex-shrink-0" />
             {location}
           </span>
         </div>
@@ -108,14 +115,14 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         {/* Key Achievements */}
         {achievements && achievements.length > 0 && (
           <div className="mb-6">
-            <div className="flex items-center text-cyan-400 font-medium mb-3">
-              <Trophy className="w-5 h-5 mr-2 text-cyan-400" />
+            <div className="flex items-center text-purple-500 font-medium mb-3">
+              <Trophy className="w-5 h-5 mr-2 text-purple-500" />
               <h4 className="text-lg">Key Achievements</h4>
             </div>
             <ul className="space-y-2.5 pl-2">
               {achievements.map((achievement, index) => (
                 <li key={index} className="text-gray-200 text-sm flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2.5 mr-3 flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 mr-3 flex-shrink-0" />
                   <span>{achievement}</span>
                 </li>
               ))}
@@ -130,7 +137,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
               {displayTechs.map((tech, index) => (
                 <motion.span 
                   key={index}
-                  className="px-3 py-1.5 text-xs font-medium bg-gray-800/40 text-gray-200 rounded-full border border-gray-700/50 hover:bg-gray-700/50 hover:border-cyan-400/30 transition-all duration-300"
+                  className="px-3 py-1.5 text-xs font-medium bg-gray-800/40 text-gray-200 rounded-full border border-gray-700/50 hover:bg-gray-700/50 hover:border-violet-600/30 transition-all duration-300"
                   whileHover={{ 
                     y: -2,
                     backgroundColor: 'rgba(30, 41, 59, 0.6)',

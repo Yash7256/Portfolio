@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import RadialMenu from './RadialMenu';
+import { motion, Transition } from 'framer-motion';
 
 const pageVariants = {
   initial: {
@@ -20,10 +19,10 @@ const pageVariants = {
   }
 };
 
-const pageTransition = {
+const pageTransition: Transition = {
   type: 'tween',
-  ease: 'anticipate',
-  duration: 0.4
+  ease: 'easeInOut',
+  duration: 0.5
 };
 
 interface PageTransitionProps {
@@ -45,9 +44,6 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
           {children}
         </div>
       </motion.div>
-      <div className="fixed bottom-6 right-6 z-50">
-        <RadialMenu />
-      </div>
     </>
   );
 };

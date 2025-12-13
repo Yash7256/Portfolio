@@ -70,7 +70,7 @@ const ExperienceDetail: React.FC = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-950">
-        <div className="animate-pulse text-cyan-400">Loading...</div>
+        <div className="animate-pulse text-[#a855f7]">Loading...</div>
       </div>
     );
   }
@@ -79,10 +79,10 @@ const ExperienceDetail: React.FC = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-950">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Experience Not Found</h1>
+          <h1 className="text-4xl font-bold  mb-4">Experience Not Found</h1>
           <button
             onClick={() => navigate(-1)}
-            className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors"
+            className="inline-flex items-center text-[#a855f7] hover:text-[#7c3aed] transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Experience
@@ -93,13 +93,13 @@ const ExperienceDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-950">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
         <div className="mb-8">
           <button 
             onClick={() => navigate(-1)}
-            className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors"
+            className="inline-flex items-center text-[#a855f7] hover:text-[#7c3aed] transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Experience
@@ -113,28 +113,28 @@ const ExperienceDetail: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold text-white mb-2">{experience.position}</h1>
-          <h2 className="text-2xl text-cyan-400 mb-4">{experience.company}</h2>
+          <h1 className="text-5xl font-bold  mb-2">{experience.position}</h1>
+          <h2 className="text-3xl text-[#a855f7] mb-4">{experience.company}</h2>
           
-          <div className="flex flex-wrap items-center gap-6 text-gray-400 mb-6">
+          <div className="flex flex-wrap items-center gap-6  mb-6">
             <div className="flex items-center">
-              <Calendar className="h-5 w-5 mr-2 text-cyan-400" />
+              <Calendar className="h-5 w-5 mr-2 text-[#a855f7]" />
               <span>{experience.period}</span>
             </div>
             <div className="flex items-center">
-              <MapPin className="h-5 w-5 mr-2 text-cyan-400" />
+              <MapPin className="h-5 w-5 mr-2 text-[#a855f7]" />
               <span>{experience.location}</span>
             </div>
           </div>
           
-          <p className="text-lg text-gray-300 mb-8">{experience.description}</p>
+          <p className="text-xl  mb-8">{experience.description}</p>
           
           {experience.certificateLink && (
             <a
               href={experience.certificateLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 border border-cyan-400 text-cyan-400 rounded-md hover:bg-cyan-400/10 transition-colors"
+              className="inline-flex items-center px-4 py-2 border border-[#a855f7] text-[#a855f7] rounded-md hover:bg-[#a855f7]/10 transition-colors"
             >
               <Award className="h-5 w-5 mr-2 flex-shrink-0" />
               <span>View Certificate</span>
@@ -148,12 +148,12 @@ const ExperienceDetail: React.FC = () => {
           <div className="lg:col-span-2 space-y-8">
             {/* Responsibilities */}
             <FloatingCard className="p-6">
-              <h3 className="text-xl font-semibold text-white mb-4">Key Responsibilities</h3>
+              <h3 className="text-2xl font-semibold  mb-4">Key Responsibilities</h3>
               <ul className="space-y-3">
                 {experience.responsibilities.map((item, index) => (
                   <li key={index} className="flex">
-                    <span className="text-cyan-400 mr-2">•</span>
-                    <span className="text-gray-300">{item}</span>
+                    <span className="text-[#a855f7] mr-2">•</span>
+                    <span className="">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -162,12 +162,12 @@ const ExperienceDetail: React.FC = () => {
             {/* Projects */}
             {experience.projects && experience.projects.length > 0 && (
               <FloatingCard className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-4">Key Projects</h3>
+                <h3 className="text-2xl font-semibold  mb-4">Key Projects</h3>
                 <div className="space-y-6">
                   {experience.projects.map((project, index) => (
-                    <div key={index} className="border-l-2 border-cyan-400 pl-4 py-1">
-                      <h4 className="text-lg font-medium text-cyan-400">{project.name}</h4>
-                      <p className="text-gray-300">{project.description}</p>
+                    <div key={index} className="border-l-2 border-[#a855f7] pl-4 py-1">
+                      <h4 className="text-lg font-medium text-[#a855f7]">{project.name}</h4>
+                      <p className="">{project.description}</p>
                     </div>
                   ))}
                 </div>
@@ -179,12 +179,12 @@ const ExperienceDetail: React.FC = () => {
           <div className="lg:col-span-1 space-y-6">
             {/* Technologies */}
             <FloatingCard className="p-6">
-              <h3 className="text-xl font-semibold text-white mb-4">Technologies & Tools</h3>
+              <h3 className="text-2xl font-semibold  mb-4">Technologies & Tools</h3>
               <div className="flex flex-wrap gap-2">
                 {experience.tech.map((tech, index) => (
                   <span 
                     key={index}
-                    className="px-3 py-1 bg-gray-800/50 text-cyan-300 rounded-full text-sm"
+                    className="px-3 py-1 bg-gray-800/50 text-[#a855f7] rounded-full text-sm"
                   >
                     {tech}
                   </span>
@@ -195,14 +195,14 @@ const ExperienceDetail: React.FC = () => {
             {/* Certificate */}
             {experience.certificateLink && (
               <FloatingCard className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-4">Certification</h3>
+                <h3 className="text-2xl font-semibold  mb-4">Certification</h3>
                 <div className="space-y-4">
-                  <p className="text-gray-300">{experience.certificateName}</p>
+                  <p className="">{experience.certificateName}</p>
                   <a
                     href={experience.certificateLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors"
+                    className="inline-flex items-center text-[#a855f7] hover:text-[#7c3aed] transition-colors"
                   >
                     <ExternalLink className="h-4 w-4 mr-2" />
                     View Certificate

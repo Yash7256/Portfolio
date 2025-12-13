@@ -18,7 +18,7 @@ export function TextHoverEffect({
       {text.split('').map((char, i) => (
         <motion.span
           key={i}
-          className="inline-block hover:text-cyan-400 transition-colors duration-200"
+          className="inline-block hover:text-[#7c3aed] transition-colors duration-200"
           whileHover={{
             scale,
             transition: { duration },

@@ -11,17 +11,17 @@ const SkillBar: React.FC<SkillBarProps> = ({ skill, percentage, delay = 0 }) => 
   return (
     <div className="mb-6">
       <div className="flex justify-between mb-2">
-        <span className="text-gray-300 font-medium">{skill}</span>
-        <span className="text-white font-semibold">{percentage}%</span>
+        <span className="text-gray-700 dark:text-gray-300 font-medium">{skill}</span>
+        <span className="text-black dark:text-white font-semibold">{percentage}%</span>
       </div>
       
-      <div className="relative h-3 bg-black/40 rounded-full overflow-hidden border border-white/10">
+      <div className="relative h-3 bg-gray-200 dark:bg-black/40 rounded-full overflow-hidden border border-gray-300/50 dark:border-white/10">
         {/* Background Shine */}
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-600/20 via-white/10 to-gray-600/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-300/20 via-gray-100/10 to-gray-300/20" />
         
         {/* Progress Bar */}
         <motion.div
-          className="absolute left-0 top-0 h-full bg-gradient-to-r from-white via-gray-200 to-gray-400 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+          className="absolute left-0 top-0 h-full bg-gradient-to-r from-gray-700 via-gray-800 to-black rounded-full shadow-[0_0_10px_rgba(0,0,0,0.3)] dark:from-white dark:via-gray-200 dark:to-gray-400 dark:shadow-[0_0_10px_rgba(255,255,255,0.3)]"
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
           transition={{
