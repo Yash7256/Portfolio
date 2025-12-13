@@ -4,7 +4,7 @@ import {
   motion,
   AnimatePresence,
 } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 
 // Get current route for active state
@@ -44,7 +44,8 @@ export const FloatingNav = ({
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const { x, y } = useMousePosition();
-  const pathname = usePathname();
+  const location = useLocation();
+  const pathname = location.pathname;
 
     
   // Update cursor position with bounds checking
