@@ -1,10 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-  motion,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 // Get current route for active state
@@ -42,31 +40,12 @@ export const FloatingNav = ({
 }: FloatingNavProps) => {
   const [visible, setVisible] = useState(true);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-    const { x, y } = useMousePosition();
+  const { x, y } = useMousePosition();
   const location = useLocation();
   const pathname = location.pathname;
 
-    
-  // Update cursor position with bounds checking
+  // Handle scroll events for showing/hiding navbar
   useEffect(() => {
-    const updateCursorPosition = () => {
-      const navbar = document.querySelector('.floating-nav');
-      if (!navbar) return;
-      
-      const rect = navbar.getBoundingClientRect();
-      const xPos = Math.max(0, Math.min(x - rect.left, rect.width));
-      const yPos = Math.max(0, Math.min(y - rect.top, rect.height));
-      
-      setCursorPosition({ x: xPos, y: yPos });
-    };
-    
-    window.addEventListener('mousemove', updateCursorPosition);
-    return () => window.removeEventListener('mousemove', updateCursorPosition);
-  }, [x, y]);
-
-  // Use effect to handle scroll events
-  React.useEffect(() => {
     let lastScrollY = window.scrollY;
     
     const handleScroll = () => {
@@ -117,11 +96,12 @@ export const FloatingNav = ({
             "shadow-lg shadow-black/5",
             "transition-all duration-300",
             className
-          )}  
+          )}
           style={{
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
-          }}>
+          }}
+        >
           {/* Profile Section */}
           <div className="flex items-center gap-3 pl-2">
             <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20">
@@ -133,77 +113,76 @@ export const FloatingNav = ({
             </div>
             <span className="text-black font-medium text-sm">Aman Raj</span>
           </div>
+          
           {/* Navigation Items */}
           <div className="flex items-center gap-1">
-            {navItems.map((navItem, idx) => {
-              const isExternal = navItem.link.startsWith('http');
-              const isActive = pathname === navItem.link;
-              
-              const linkProps = {
-                key: `link-${idx}`,
-                className: cn(
-                  "relative px-5 py-2.5 rounded-full transition-all duration-200 group block",
-                  isActive 
-                    ? 'text-neutral-900' 
-                    : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
-                ),
-                onMouseEnter: () => setHoveredItem(idx),
-                onMouseLeave: () => setHoveredItem(null),
-                ...(isExternal ? {
-                  href: navItem.link,
-                  target: '_blank',
-                  rel: 'noopener noreferrer'
-                } : {
-                  to: navItem.link
-                })
-              };
-              
-              return isExternal ? (
-                <a {...linkProps}>
-                  <div className="flex items-center space-x-2">
-                    {navItem.icon}
-                    <span className="text-sm">{navItem.name}</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </div>
-                </a>
-              ) : (
-                <Link {...linkProps}>
-                  <div className="flex items-center space-x-2">
-                    {navItem.icon}
-                    <span className="text-sm">{navItem.name}</span>
-                  </div>
-                </Link>
-              );
-                  <div className="flex items-center space-x-2">
-                    {navItem.icon}
-                    <span className="text-sm">{navItem.name}</span>
-                  </div>
-                  {hoveredItem === idx && (
-                    <motion.div
-                      className="absolute inset-0 bg-neutral-100 rounded-full -z-10"
-                      layoutId="navHover"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        type: "spring",
-                        bounce: 0.2,
-                        duration: 0.6,
-                      }}
-                    />
-                  )}
-              );
-            })}
+            {navItems.map((navItem, idx) => (
+              <div key={`nav-item-${idx}`} className="relative">
+                {navItem.link.startsWith('http') ? (
+                  <a
+                    href={navItem.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      "relative px-5 py-2.5 rounded-full transition-all duration-200 block",
+                      pathname === navItem.link 
+                        ? 'text-neutral-900' 
+                        : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
+                    )}
+                    onMouseEnter={() => setHoveredItem(idx)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      {navItem.icon}
+                      <span className="text-sm">{navItem.name}</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </div>
+                  </a>
+                ) : (
+                  <Link
+                    to={navItem.link}
+                    className={cn(
+                      "relative px-5 py-2.5 rounded-full transition-all duration-200 block",
+                      pathname === navItem.link 
+                        ? 'text-neutral-900' 
+                        : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
+                    )}
+                    onMouseEnter={() => setHoveredItem(idx)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      {navItem.icon}
+                      <span className="text-sm">{navItem.name}</span>
+                    </div>
+                  </Link>
+                )}
+                
+                {hoveredItem === idx && (
+                  <motion.div
+                    className="absolute inset-0 bg-neutral-100 rounded-full -z-10"
+                    layoutId="navHover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      type: "spring",
+                      bounce: 0.2,
+                      duration: 0.6,
+                    }}
+                  />
+                )}
+              </div>
+            ))}
           </div>
         </motion.div>
       </AnimatePresence>
       
       {/* Subtle shine effect */}
       <motion.div 
-        className="absolute inset-0 pointer-events-none opacity-20"
+        className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-20 z-0"
         style={{
           background: `radial-gradient(
-            400px circle at ${cursorPosition.x}px ${cursorPosition.y}px, 
+            400px circle at ${x}px ${y}px, 
             rgba(255, 255, 255, 0.2), 
             transparent 80%
           )`,
