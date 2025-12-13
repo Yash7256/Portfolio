@@ -136,20 +136,44 @@ export const FloatingNav = ({
           {/* Navigation Items */}
           <div className="flex items-center gap-1">
             {navItems.map((navItem, idx) => {
+              const isExternal = navItem.link.startsWith('http');
               const isActive = pathname === navItem.link;
-              return (
-                <Link
-                  key={`link-${idx}`}
-                  to={navItem.link}
-                  className={cn(
-                    "relative px-5 py-2.5 rounded-full transition-all duration-200 group block",
-                    isActive 
-                      ? 'text-neutral-900' 
-                      : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
-                  )}
-                  onMouseEnter={() => setHoveredItem(idx)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
+              
+              const linkProps = {
+                key: `link-${idx}`,
+                className: cn(
+                  "relative px-5 py-2.5 rounded-full transition-all duration-200 group block",
+                  isActive 
+                    ? 'text-neutral-900' 
+                    : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
+                ),
+                onMouseEnter: () => setHoveredItem(idx),
+                onMouseLeave: () => setHoveredItem(null),
+                ...(isExternal ? {
+                  href: navItem.link,
+                  target: '_blank',
+                  rel: 'noopener noreferrer'
+                } : {
+                  to: navItem.link
+                })
+              };
+              
+              return isExternal ? (
+                <a {...linkProps}>
+                  <div className="flex items-center space-x-2">
+                    {navItem.icon}
+                    <span className="text-sm">{navItem.name}</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </div>
+                </a>
+              ) : (
+                <Link {...linkProps}>
+                  <div className="flex items-center space-x-2">
+                    {navItem.icon}
+                    <span className="text-sm">{navItem.name}</span>
+                  </div>
+                </Link>
+              );
                   <div className="flex items-center space-x-2">
                     {navItem.icon}
                     <span className="text-sm">{navItem.name}</span>
@@ -168,7 +192,6 @@ export const FloatingNav = ({
                       }}
                     />
                   )}
-                </Link>
               );
             })}
           </div>
