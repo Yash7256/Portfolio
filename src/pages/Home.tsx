@@ -4,14 +4,33 @@ import { ArrowRight, MapPin, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { HoverBorderGradientButton } from '@/components/hover-border-gradient-demo';
 
+// List of available spline files in the public/assets/spline directory
+// List of available spline files in the public/assets/spline directory
+const SPLINE_FILES = [
+  '1.spline',
+  '2.spline',
+  '3.spline',
+  '4.spline',
+  'greet.spline'
+];
+
 const SplineViewer: React.FC = () => {
+  // Generate a random index on component mount
+  const [randomIndex] = React.useState(() => 
+    Math.floor(Math.random() * SPLINE_FILES.length)
+  );
+  
+  // Get the URL for the randomly selected spline file
+  const splineUrl = `/spline-viewer/index.html?file=/assets/spline/${SPLINE_FILES[randomIndex]}`;
+
   return (
     <div className="w-full h-full">
       <iframe 
-        src="/spline-viewer/index.html" 
+        src={splineUrl}
         className="w-full h-full border-0"
         title="3D Greeting"
         allowFullScreen
+        key={splineUrl}
       />
     </div>
   );

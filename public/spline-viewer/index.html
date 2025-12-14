@@ -48,46 +48,18 @@
 </head>
 <body>
   <div id="spline-container">
-    <spline-viewer 
-      url="/assets/spline/greet.spline" 
-      loading-anim-type="spinner-big-light"
-      events-target="global"
-    ></spline-viewer>
-  </div>
-  
-  <div id="loading">
-    <div class="spinner"></div>
-    <p>Loading 3D content...</p>
-    <p id="status"></p>
+    <spline-viewer id="spline" loading-anim></spline-viewer>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const statusEl = document.getElementById('status');
-      const loadingEl = document.getElementById('loading');
-      const splineViewer = document.querySelector('spline-viewer');
-
-      if (!splineViewer) {
-        statusEl.textContent = 'Error: Spline viewer not found';
-        return;
+      const urlParams = new URLSearchParams(window.location.search);
+      const file = urlParams.get('file');
+      
+      if (file) {
+        const splineViewer = document.getElementById('spline');
+        splineViewer.setAttribute('url', file);
       }
-
-      // Check if the viewer has loaded
-      splineViewer.addEventListener('load', () => {
-        console.log('Spline viewer loaded successfully');
-        loadingEl.style.display = 'none';
-      });
-
-      // Error handling
-      splineViewer.addEventListener('error', (e) => {
-        console.error('Spline viewer error:', e);
-        statusEl.textContent = 'Error loading 3D content. Check console for details.';
-      });
-
-      // Hide loading after a timeout (fallback)
-      setTimeout(() => {
-        loadingEl.style.display = 'none';
-      }, 5000);
     });
   </script>
 </body>
