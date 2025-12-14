@@ -9,7 +9,6 @@ import { HoverBorderGradientButton } from '@/components/hover-border-gradient-de
 const SPLINE_FILES = [
   '1.spline',
   '2.spline',
-  '3.spline',
   '4.spline',
   'greet.spline'
 ];
