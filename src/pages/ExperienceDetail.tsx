@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, MapPin, ExternalLink, Award } from 'lucide-react';
 import FloatingCard from '../components/ui/FloatingCard';
+import { HoverBorderGradientButton } from '@/components/hover-border-gradient-demo';
 
 // This would typically come from an API or shared data file
 const experiences = [
@@ -79,7 +80,7 @@ const ExperienceDetail: React.FC = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-950">
         <div className="text-center">
-          <h1 className="text-4xl font-bold  mb-4">Experience Not Found</h1>
+          <h1 className="text-4xl font-bold text-black mb-4">Experience Not Found</h1>
           <button
             onClick={() => navigate(-1)}
             className="inline-flex items-center text-[#a855f7] hover:text-[#7c3aed] transition-colors"
@@ -97,13 +98,17 @@ const ExperienceDetail: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
         <div className="mb-8">
-          <button 
-            onClick={() => navigate(-1)}
-            className="inline-flex items-center text-[#a855f7] hover:text-[#7c3aed] transition-colors"
+          <HoverBorderGradientButton
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(-1);
+            }}
+            className="p-3"
+            containerClassName="rounded-full"
+            title="Back to Experience"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Experience
-          </button>
+            <ArrowLeft className="h-5 w-5" />
+          </HoverBorderGradientButton>
         </div>
 
         {/* Experience Header */}
@@ -113,7 +118,7 @@ const ExperienceDetail: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className="text-5xl font-bold  mb-2">{experience.position}</h1>
+          <h1 className="text-5xl font-bold text-black mb-2">{experience.position}</h1>
           <h2 className="text-3xl text-[#a855f7] mb-4">{experience.company}</h2>
           
           <div className="flex flex-wrap items-center gap-6  mb-6">
@@ -127,18 +132,19 @@ const ExperienceDetail: React.FC = () => {
             </div>
           </div>
           
-          <p className="text-xl  mb-8">{experience.description}</p>
+          <p className="text-xl text-black mb-8">{experience.description}</p>
           
           {experience.certificateLink && (
-            <a
+            <HoverBorderGradientButton
+              as="a"
               href={experience.certificateLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 border border-[#a855f7] text-[#a855f7] rounded-md hover:bg-[#a855f7]/10 transition-colors"
+              className="text-sm sm:text-base font-medium text-gray-900 dark:text-white py-2 px-5 w-auto min-w-[180px] justify-center"
+              containerClassName="rounded-full"
             >
-              <Award className="h-5 w-5 mr-2 flex-shrink-0" />
-              <span>View Certificate</span>
-            </a>
+              View Certificate
+            </HoverBorderGradientButton>
           )}
         </motion.div>
 
@@ -147,28 +153,46 @@ const ExperienceDetail: React.FC = () => {
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-8">
             {/* Responsibilities */}
-            <FloatingCard className="p-6">
-              <h3 className="text-2xl font-semibold  mb-4">Key Responsibilities</h3>
+            <FloatingCard 
+              className="p-6 group"
+              hoverGradient="from-blue-500/20 to-cyan-400/20"
+            >
+              <h3 className="text-2xl font-semibold text-black mb-4 group-hover:text-[#3b82f6] transition-colors">Key Responsibilities</h3>
               <ul className="space-y-3">
                 {experience.responsibilities.map((item, index) => (
-                  <li key={index} className="flex">
-                    <span className="text-[#a855f7] mr-2">•</span>
-                    <span className="">{item}</span>
-                  </li>
+                  <motion.li 
+                    key={index} 
+                    className="flex items-start"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: 'spring', stiffness: 500 }}
+                  >
+                    <span className="text-[#3b82f6] mr-2 mt-1">•</span>
+                    <span className="text-black">{item}</span>
+                  </motion.li>
                 ))}
               </ul>
             </FloatingCard>
 
             {/* Projects */}
             {experience.projects && experience.projects.length > 0 && (
-              <FloatingCard className="p-6">
-                <h3 className="text-2xl font-semibold  mb-4">Key Projects</h3>
+              <FloatingCard 
+                className="p-6 group"
+                hoverGradient="from-purple-500/20 to-pink-500/20"
+              >
+                <h3 className="text-2xl font-semibold text-black mb-4 group-hover:text-[#a855f7] transition-colors">Key Projects</h3>
                 <div className="space-y-6">
                   {experience.projects.map((project, index) => (
-                    <div key={index} className="border-l-2 border-[#a855f7] pl-4 py-1">
-                      <h4 className="text-lg font-medium text-[#a855f7]">{project.name}</h4>
-                      <p className="">{project.description}</p>
-                    </div>
+                    <motion.div 
+                      key={index} 
+                      className="border-l-2 border-[#a855f7] pl-4 py-1 group-hover:border-[#8b5cf6] transition-colors"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: 'spring', stiffness: 500 }}
+                    >
+                      <h4 className="text-lg font-medium text-[#a855f7] group-hover:text-[#8b5cf6] transition-colors">
+                        {project.name}
+                      </h4>
+                      <p className="text-black">{project.description}</p>
+                    </motion.div>
                   ))}
                 </div>
               </FloatingCard>
@@ -178,38 +202,29 @@ const ExperienceDetail: React.FC = () => {
           {/* Right Column */}
           <div className="lg:col-span-1 space-y-6">
             {/* Technologies */}
-            <FloatingCard className="p-6">
-              <h3 className="text-2xl font-semibold  mb-4">Technologies & Tools</h3>
+            <FloatingCard 
+              className="p-6 group"
+              hoverGradient="from-amber-500/20 to-orange-500/20"
+            >
+              <h3 className="text-2xl font-semibold text-black mb-4 group-hover:text-[#f59e0b] transition-colors">Technologies & Tools</h3>
               <div className="flex flex-wrap gap-2">
                 {experience.tech.map((tech, index) => (
-                  <span 
+                  <motion.span 
                     key={index}
-                    className="px-3 py-1 bg-gray-800/50 text-[#a855f7] rounded-full text-sm"
+                    className="px-3 py-1 bg-white/5 text-black rounded-full text-sm border border-gray-200 hover:border-[#f59e0b]/50 hover:bg-[#f59e0b]/10 transition-colors cursor-default"
+                    whileHover={{ 
+                      y: -2,
+                      scale: 1.05,
+                      backgroundColor: 'rgba(245, 158, 11, 0.1)'
+                    }}
+                    transition={{ type: 'spring', stiffness: 500 }}
                   >
                     {tech}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </FloatingCard>
 
-            {/* Certificate */}
-            {experience.certificateLink && (
-              <FloatingCard className="p-6">
-                <h3 className="text-2xl font-semibold  mb-4">Certification</h3>
-                <div className="space-y-4">
-                  <p className="">{experience.certificateName}</p>
-                  <a
-                    href={experience.certificateLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-[#a855f7] hover:text-[#7c3aed] transition-colors"
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    View Certificate
-                  </a>
-                </div>
-              </FloatingCard>
-            )}
           </div>
         </div>
       </div>

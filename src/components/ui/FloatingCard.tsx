@@ -5,9 +5,16 @@ interface FloatingCardProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  iconBackground?: string;
+  hoverGradient?: string;
 }
 
-const FloatingCard: React.FC<FloatingCardProps> = ({ children, className = '', delay = 0 }) => {
+const FloatingCard: React.FC<FloatingCardProps> = ({ 
+  children, 
+  className = '', 
+  delay = 0,
+  hoverGradient = 'from-purple-600/20 to-indigo-600/20' 
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95, boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)' }}
@@ -34,15 +41,22 @@ const FloatingCard: React.FC<FloatingCardProps> = ({ children, className = '', d
         y: -2,
         transition: { type: 'spring', stiffness: 500, damping: 30 }
       }}
-      className={`relative overflow-hidden rounded-xl backdrop-blur-lg bg-white/60 border border-gray-200/80 shadow-lg group dark:bg-gray-800/60 dark:border-white/10 ${className}`}
+      className={`relative overflow-hidden rounded-2xl backdrop-blur-lg bg-gradient-to-br from-white/5 to-white/10 border border-white/10 shadow-xl group hover:shadow-2xl transition-all duration-300 ${className}`}
     >
-      {/* Shine Effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out transform rotate-12" />
+      {/* Gradient Border Effect */}
+      <div className="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-br from-purple-500/30 via-transparent to-indigo-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 rounded-2xl" />
+      </div>
+
+      {/* Hover Gradient Overlay */}
+      <div 
+        className={`absolute inset-0 bg-gradient-to-br ${hoverGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} 
+      />
       
-      {/* Metallic Border */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
-      {children}
+      {/* Content */}
+      <div className="relative z-10 h-full">
+        {children}
+      </div>
     </motion.div>
   );
 };

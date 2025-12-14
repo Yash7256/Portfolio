@@ -43,6 +43,9 @@ export const FloatingNav = ({
   const { x, y } = useMousePosition();
   const location = useLocation();
   const pathname = location.pathname;
+  
+  // Filter out the Home item from navItems
+  const filteredNavItems = navItems.filter(item => item.name.toLowerCase() !== 'home');
 
   // Handle scroll events for showing/hiding navbar
   useEffect(() => {
@@ -102,8 +105,8 @@ export const FloatingNav = ({
             WebkitBackdropFilter: 'blur(16px)',
           }}
         >
-          {/* Profile Section */}
-          <div className="flex items-center gap-3 pl-2">
+          {/* Profile Section - Clickable to Home */}
+          <Link to="/" className="flex items-center gap-3 pl-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20">
               <img 
                 src="/images/pf.png" 
@@ -111,12 +114,30 @@ export const FloatingNav = ({
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="text-black font-medium text-sm">Aman Raj</span>
-          </div>
+            <span 
+              className="font-medium text-sm"
+              style={{
+                fontFamily: '"Dancing Script", sans-serif',
+                fontSize: '20px',
+                fontWeight: 700,
+                lineHeight: '150%',
+                color: '#171717',
+                letterSpacing: '0em',
+                textDecoration: 'none',
+                textTransform: 'none',
+                fontVariationSettings: 'normal',
+                fontFeatureSettings: 'normal',
+                fontStyle: 'normal',
+                WebkitFontSmoothing: 'antialiased'
+              }}
+            >
+              Aman Raj
+            </span>
+          </Link>
           
-          {/* Navigation Items */}
+          {/* Navigation Items - Using filteredNavItems */}
           <div className="flex items-center gap-1">
-            {navItems.map((navItem, idx) => (
+            {filteredNavItems.map((navItem, idx) => (
               <div key={`nav-item-${idx}`} className="relative">
                 {navItem.link.startsWith('http') ? (
                   <a

@@ -27,7 +27,7 @@ export function AnimatedSectionHeading({
       transition={{ duration: 0.6 }}
       className={`text-center mb-12 ${className}`}
     >
-      <div className="flex items-center justify-center mb-4">
+      <div className="flex items-center justify-center mb-4 text-black">
         <motion.div
           initial={{ width: 0, opacity: 0 }}
           whileInView={{ width: lineWidth, opacity: 1 }}
@@ -40,7 +40,7 @@ export function AnimatedSectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px 0px" }}
           transition={{ duration: 0.4, delay: 0.4 }}
-          className="mx-6 text-2xl sm:text-3xl font-bold text-white whitespace-nowrap"
+          className="mx-6 text-2xl sm:text-3xl font-bold text-black whitespace-nowrap"
         >
           {title}
         </motion.h2>

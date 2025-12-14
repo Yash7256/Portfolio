@@ -70,17 +70,17 @@ const Projects: React.FC = () => {
 
         {/* Projects Grid */}
         <motion.div 
-          className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center px-4 sm:px-0 w-full"
           variants={container}
         >
           {projects.map((project, index) => (
             <motion.div 
               key={index}
               variants={item}
-              className="group"
+              className="group w-full flex justify-center"
             >
               <FloatingCard 
-                className="overflow-hidden h-full flex flex-col group" 
+                className="overflow-hidden h-full flex flex-col group w-full max-w-md mx-auto" 
                 delay={index * 0.1}
               >
                 {/* Project Image with Link to Details */}
@@ -103,7 +103,7 @@ const Projects: React.FC = () => {
                 
                 {/* Action Buttons */}
                 <motion.div 
-                  className="absolute top-4 right-4 flex space-x-2 z-10"
+                  className="absolute top-4 right-4 flex space-x-3 z-10"
                   initial={{ opacity: 0, y: -10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ opacity: 1 }}
@@ -116,14 +116,14 @@ const Projects: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ 
-                        scale: 1.1,
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)'
+                        scale: 1.15,
+                        backgroundColor: 'rgba(255, 255, 255, 0.3)'
                       }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2 bg-black/40 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 shadow-lg"
+                      className="p-2.5 bg-black/60 backdrop-blur-sm rounded-full border border-white/30 hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-500/20"
                       aria-label={`View ${project.title} on GitHub`}
                     >
-                      <Github className="w-4 h-4 " />
+                      <Github className="w-5 h-5 text-white" />
                     </motion.a>
                   )}
                   {project.demo && (
@@ -133,14 +133,14 @@ const Projects: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ 
-                        scale: 1.1,
-                        backgroundColor: 'rgba(74, 222, 128, 0.2)'
+                        scale: 1.15,
+                        backgroundColor: 'rgba(74, 222, 128, 0.4)'
                       }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2 bg-black/40 backdrop-blur-sm rounded-full border border-white/20 hover:bg-green-500/20 transition-all duration-300 shadow-lg"
+                      className="p-2.5 bg-black/60 backdrop-blur-sm rounded-full border border-white/30 hover:bg-green-500/40 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-green-500/20"
                       aria-label={`View ${project.title} demo`}
                     >
-                      <ExternalLink className="w-4 h-4 " />
+                      <ExternalLink className="w-5 h-5 text-white" />
                     </motion.a>
                   )}
                 </motion.div>
@@ -188,16 +188,7 @@ const Projects: React.FC = () => {
                     )}
                   </motion.div>
                   
-                  <div className="mt-auto pt-4 border-t border-white/5">
-                    <Link 
-                      to={`/projects/${project.id}`}
-                      className="inline-flex items-center text-sm font-medium hover:transition-colors group"
-                    >
-                      View Details
-                      <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-
+                  
                   {/* Learn More Button */}
                   <motion.div
                     whileHover={{ scale: 1.02 }}
