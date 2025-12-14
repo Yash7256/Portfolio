@@ -92,9 +92,13 @@ const Home: React.FC = React.memo(() => {
                     Working On 
                     <span className="ml-2 w-10 h-10 rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-100">
                       <img 
-                        src="/images/location.jpg" 
-                        alt="Location"
+                        src="/images/location.png" 
+                        alt="CyberSec Project"
                         className="w-full h-full object-cover"
+                        onError={(e) => {
+                          console.error('Failed to load image:', e.currentTarget.src);
+                          e.currentTarget.style.display = 'none';
+                        }}
                       />
                     </span>
                     <span className="ml-2">CyberSec</span>
