@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { Home as HomeIcon, User, Code, Briefcase, Mail, BookOpen, ArrowUpRight } from 'lucide-react';
 import { FloatingNav } from './components/ui/floating-navbar';
+import CustomCursor from './components/CustomCursor';
 
 // Lazy load pages
 const HomePage = lazy(() => import('./pages/Home'));
@@ -102,10 +103,21 @@ const AnimatedRoutes = () => {
 
 function App() {
   const [loading, setLoading] = React.useState(true);
+  const [cursorStyle, setCursorStyle] = React.useState<'default' | 'minimal' | 'ring' | 'trailing' | 'neon'>('default');
 
   React.useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Allow changing cursor style via URL parameter for demo purposes
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const styleParam = urlParams.get('cursor');
+    
+    if (styleParam && ['default', 'minimal', 'ring', 'trailing', 'neon'].includes(styleParam)) {
+      setCursorStyle(styleParam as any);
+    }
   }, []);
 
   if (loading) {
@@ -126,6 +138,7 @@ function App() {
     <React.StrictMode>
       <Router>
         <div className="relative min-h-screen overflow-x-hidden">
+          <CustomCursor style={cursorStyle} />
           <FloatingNav navItems={navItems} />
           <div className="pt-4">
             <Suspense fallback={null}>

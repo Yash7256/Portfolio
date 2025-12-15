@@ -50,6 +50,12 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: none;
+  }
+  
+  /* Hide default cursor for all elements */
+  * {
+    cursor: none !important;
   }
   
   /* Custom Scrollbar */
@@ -80,6 +86,11 @@
   
   .animate-slide-up {
     animation: slideUp 0.5s ease-out;
+  }
+  
+  /* Cursor hover class */
+  .cursor-hover {
+    display: inline-block;
   }
   
   @keyframes fadeIn {

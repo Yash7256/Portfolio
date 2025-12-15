@@ -7,21 +7,7 @@ import { cn } from "@/lib/utils";
 
 // Get current route for active state
 
-// Custom cursor position tracking
-const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
-
-  return mousePosition;
-};
+// Mouse position tracking removed as it's now handled by global cursor component
 
 type NavItem = {
   name: string;
@@ -40,7 +26,6 @@ export const FloatingNav = ({
 }: FloatingNavProps) => {
   const [visible, setVisible] = useState(true);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
-  const { x, y } = useMousePosition();
   const location = useLocation();
   const pathname = location.pathname;
   
@@ -198,35 +183,7 @@ export const FloatingNav = ({
         </motion.div>
       </AnimatePresence>
       
-      {/* Subtle shine effect */}
-      <motion.div 
-        className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-20 z-0"
-        style={{
-          background: `radial-gradient(
-            400px circle at ${x}px ${y}px, 
-            rgba(255, 255, 255, 0.2), 
-            transparent 80%
-          )`,
-        }}
-      />
-      
-      {/* Custom cursor */}
-      <motion.div
-        className="fixed top-0 left-0 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm pointer-events-none z-[9999]"
-        animate={{
-          x: x - 12,
-          y: y - 12,
-          scale: hoveredItem !== null ? 1.5 : 1,
-          opacity: hoveredItem !== null ? 1 : 0,
-          backgroundColor: hoveredItem !== null ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.15)',
-        }}
-        transition={{
-          type: "spring",
-          mass: 0.1,
-          damping: 15,
-          stiffness: 500,
-        }}
-      />
+      {/* Removed custom cursor and shine effect to avoid conflicts with global cursor */}
       
           </>
   );
