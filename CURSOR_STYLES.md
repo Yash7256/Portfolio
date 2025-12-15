@@ -10,9 +10,9 @@ A circular dot cursor with an expanding ring on hover. This is the default style
 ![Default Cursor](https://placehold.co/100x50?text=Dot+Ring)
 
 Features:
-- Small green dot that follows the mouse
+- Small violet dot that follows the mouse
 - Expands to a larger circle with outer ring on hover
-- Uses mix-blend-mode for better visibility on different backgrounds
+- Uses the same colors as your "Get in Touch" button
 
 ### 2. Minimal Style (Small Dot)
 A minimalistic small dot cursor without any hover effects.
@@ -20,7 +20,7 @@ A minimalistic small dot cursor without any hover effects.
 ![Minimal Cursor](https://placehold.co/100x50?text=Small+Dot)
 
 Features:
-- Very subtle 2px dot
+- Very subtle 2px dot in violet color
 - Simple and clean
 - No hover effects
 
@@ -30,7 +30,7 @@ A hollow circular cursor that expands on hover.
 ![Ring Cursor](https://placehold.co/100x50?text=Hollow+Circle)
 
 Features:
-- 2px border circular cursor
+- 2px border circular cursor in violet/purple colors
 - Expands on hover
 - Clean and modern look
 
@@ -40,7 +40,7 @@ Multiple dots that trail behind the cursor creating a motion effect.
 ![Trailing Cursor](https://placehold.co/100x50?text=Trail+Dots)
 
 Features:
-- 8 dots trailing behind the cursor
+- 8 violet dots trailing behind the cursor
 - Each dot fades out progressively
 - Creates a smooth motion trail effect
 
@@ -50,7 +50,7 @@ A glowing circular cursor with neon light effects on hover.
 ![Neon Cursor](https://placehold.co/100x50?text=Glow+Circle)
 
 Features:
-- Solid green circle
+- Solid violet circle with purple glow
 - Glowing neon effect on hover
 - Box-shadow based glow effect
 
