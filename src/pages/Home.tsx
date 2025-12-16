@@ -39,58 +39,26 @@ const SplineViewer: React.FC = () => {
 // Example: @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 
 const Home: React.FC = React.memo(() => {
+  // Check if device is touch-enabled (smartphone/tablet)
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
   return (
     <div className="min-h-screen bg-gray-50 overflow-hidden">
       {/* Hero Section */}
       <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16">
-        {/* Signature in top left */}
-        <motion.div 
-          className="absolute top-8 left-8"
-          style={{
-            fontFamily: '"Dancing Script", sans-serif',
-            fontSize: '26px',
-            fontWeight: 700,
-            lineHeight: '150%',
-            color: '#171717',
-            letterSpacing: '0em',
-            textDecoration: 'none',
-            textTransform: 'none',
-            fontVariationSettings: 'normal',
-            fontFeatureSettings: 'normal',
-            fontStyle: 'normal',
-            WebkitFontSmoothing: 'antialiased'
-          }}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-        
-        </motion.div>
-
-        {/* Available for work badge */}
-        <motion.div 
-          className="absolute top-8 right-8 flex items-center gap-2 text-sm text-gray-600"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <span className="w-2 h-2 rounded-full bg-green-500"></span>
-          <span>Available for work</span>
-        </motion.div>
-
         <div className="max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             {/* Left Column - Content */}
             <motion.div 
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: isTouchDevice ? 0.3 : 0.8 }}
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal leading-tight">
-                <div className="flex items-center whitespace-nowrap">
+                <div className="flex items-center flex-wrap gap-3 sm:gap-4">
                   <span className="text-gray-800">Hey, I'm Aman Raj</span>
-                  <span className="ml-4 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-200 flex-shrink-0">
+                  <span className="ml-0 sm:ml-4 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-200 flex-shrink-0">
                     <img 
                       src="/images/pf.png" 
                       alt="Aman Raj"
@@ -105,10 +73,10 @@ const Home: React.FC = React.memo(() => {
                 <div className="mt-4">
                   <span className="text-gray-800">Full Stack Engineer</span>
                 </div>
-                <span className="block text-gray-600 text-2xl sm:text-3xl mt-8">
+                <span className="block text-gray-600 text-xl sm:text-2xl md:text-3xl mt-6 sm:mt-8">
                   <span className="relative inline-flex items-center">
                     Working On 
-                    <span className="ml-2 w-10 h-10 rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-100">
+                    <span className="ml-2 w-8 h-8 sm:w-10 sm:h-10 rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-100">
                       <img 
                         src="/images/location.png" 
                         alt="CyberSec Project"
@@ -124,20 +92,20 @@ const Home: React.FC = React.memo(() => {
                 </span>
               </h1>
 
-              <p className="text-gray-500 text-lg max-w-lg leading-relaxed">
+              <p className="text-gray-500 text-base sm:text-lg max-w-lg leading-relaxed">
                 Crafting elegant digital experiences through thoughtful design and clean, efficient code.
               </p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: isTouchDevice ? 0.1 : 0.4 }}
               >
                 <div className="inline-flex">
                   <HoverBorderGradientButton
                     as={Link}
                     to="/contact"
-                    className="text-sm sm:text-base font-medium text-gray-900 dark:text-white py-3 px-6"
+                    className="text-sm sm:text-base font-medium text-gray-900 dark:text-white py-2.5 px-5 sm:py-3 sm:px-6"
                     containerClassName="rounded-full"
                   >
                     Get In Touch Today
@@ -148,10 +116,10 @@ const Home: React.FC = React.memo(() => {
 
             {/* Right Column - 3D Element with Spline */}
             <motion.div 
-              className="flex items-center justify-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl ml-0 mt-8 lg:mt-0"
+              className="flex items-center justify-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl ml-0 mt-6 sm:mt-8 lg:mt-0"
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: isTouchDevice ? 0.3 : 0.8, delay: isTouchDevice ? 0 : 0.2 }}
             >
               <div className="relative w-full aspect-square max-w-md">
                 <SplineViewer />

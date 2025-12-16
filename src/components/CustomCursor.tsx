@@ -9,6 +9,29 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorVariant, setCursorVariant] = useState('default');
   const [mousePositions, setMousePositions] = useState<Array<{x: number, y: number}>>([]);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    // Check if device is touch-enabled (smartphone/tablet)
+    const checkTouchDevice = () => {
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setIsTouchDevice(isTouch);
+    };
+
+    checkTouchDevice();
+
+    // Listen for resize events to recheck
+    window.addEventListener('resize', checkTouchDevice);
+
+    return () => {
+      window.removeEventListener('resize', checkTouchDevice);
+    };
+  }, []);
+
+  // Don't render cursor on touch devices
+  if (isTouchDevice) {
+    return null;
+  }
 
   useEffect(() => {
     const mouseMoveHandler = (e: MouseEvent) => {
@@ -59,7 +82,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
         y: mousePosition.y - 8,
         width: 16,
         height: 16,
-        backgroundColor: 'rgba(124, 58, 237, 0.8)', // violet-600
+        backgroundColor: 'rgba(124, 58, 237, 0.5)', // violet-600 with 50% transparency
         opacity: 1,
       },
       hover: {
@@ -67,7 +90,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
         y: mousePosition.y - 24,
         width: 48,
         height: 48,
-        backgroundColor: 'rgba(168, 85, 247, 0.9)', // purple-500
+        backgroundColor: 'rgba(168, 85, 247, 0.5)', // purple-500 with 50% transparency
         opacity: 1,
       }
     };
@@ -95,7 +118,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
               y: mousePosition.y - 28,
               width: 56,
               height: 56,
-              border: '2px solid #a855f7', // purple-500
+              border: '2px solid rgba(168, 85, 247, 0.5)', // purple-500 with 50% transparency
             }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -120,7 +143,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
         style={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
-          backgroundColor: 'rgba(124, 58, 237, 0.9)', // violet-600
+          backgroundColor: 'rgba(124, 58, 237, 0.5)', // violet-600 with 50% transparency
         }}
         transition={{
           type: 'spring',
@@ -141,7 +164,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
         width: 30,
         height: 30,
         opacity: 1,
-        border: '2px solid #7c3aed', // violet-600
+        border: '2px solid rgba(124, 58, 237, 0.5)', // violet-600 with 50% transparency
       },
       hover: {
         x: mousePosition.x - 25,
@@ -149,7 +172,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
         width: 50,
         height: 50,
         opacity: 1,
-        border: '2px solid #a855f7', // purple-500
+        border: '2px solid rgba(168, 85, 247, 0.5)', // purple-500 with 50% transparency
       }
     };
 
@@ -179,11 +202,11 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
             style={{
               x: pos.x - 6,
               y: pos.y - 6,
-              backgroundColor: `rgba(124, 58, 237, ${(index + 1) / mousePositions.length * 0.9})`, // violet-600 with fading opacity
+              backgroundColor: `rgba(124, 58, 237, ${(index + 1) / mousePositions.length * 0.5})`, // violet-600 with 50% max transparency
             }}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ 
-              opacity: (index + 1) / mousePositions.length * 0.7,
+              opacity: (index + 1) / mousePositions.length * 0.35,
               scale: (index + 1) / mousePositions.length * 1.2
             }}
             transition={{ duration: 0.1 }}
@@ -202,8 +225,8 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
         width: 24,
         height: 24,
         opacity: 1,
-        backgroundColor: 'rgba(124, 58, 237, 0.8)', // violet-600
-        boxShadow: '0 0 10px rgba(124, 58, 237, 0.5)', // violet-600
+        backgroundColor: 'rgba(124, 58, 237, 0.5)', // violet-600 with 50% transparency
+        boxShadow: '0 0 10px rgba(124, 58, 237, 0.25)', // violet-600 with 50% transparency
       },
       hover: {
         x: mousePosition.x - 20,
@@ -211,8 +234,8 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ style = 'default' }) => {
         width: 40,
         height: 40,
         opacity: 1,
-        backgroundColor: 'rgba(168, 85, 247, 0.8)', // purple-500
-        boxShadow: '0 0 20px rgba(168, 85, 247, 0.8), 0 0 30px rgba(124, 58, 237, 0.6)', // purple-500 and violet-600
+        backgroundColor: 'rgba(168, 85, 247, 0.5)', // purple-500 with 50% transparency
+        boxShadow: '0 0 20px rgba(168, 85, 247, 0.4), 0 0 30px rgba(124, 58, 237, 0.3)', // purple-500 and violet-600 with 50% transparency
       }
     };
 

@@ -105,10 +105,13 @@ function App() {
   const [loading, setLoading] = React.useState(true);
   const [cursorStyle, setCursorStyle] = React.useState<'default' | 'minimal' | 'ring' | 'trailing' | 'neon'>('default');
 
+  // Check if device is touch-enabled (smartphone/tablet)
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
   React.useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false), isTouchDevice ? 500 : 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isTouchDevice]);
 
   // Allow changing cursor style via URL parameter for demo purposes
   React.useEffect(() => {

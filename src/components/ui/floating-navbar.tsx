@@ -92,7 +92,7 @@ export const FloatingNav = ({
           }}
           className={cn(
             "floating-nav relative overflow-hidden",
-            "flex max-w-fit fixed top-6 inset-x-0 mx-auto rounded-full z-[5000] px-4 py-1 items-center justify-between gap-8",
+            "flex max-w-fit fixed top-4 sm:top-6 inset-x-0 mx-auto rounded-full z-[5000] px-4 py-1 items-center justify-between gap-8",
             "bg-white/80 backdrop-blur-lg border border-transparent/5",
             "shadow-lg shadow-black/5",
             "transition-all duration-300",
