@@ -42,7 +42,7 @@ const Home: React.FC = React.memo(() => {
   return (
     <div className="min-h-screen bg-gray-50 overflow-hidden">
       {/* Hero Section */}
-      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-12 py-16">
+      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16">
         {/* Signature in top left */}
         <motion.div 
           className="absolute top-8 left-8"
@@ -87,7 +87,7 @@ const Home: React.FC = React.memo(() => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-normal leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal leading-tight">
                 <div className="flex items-center whitespace-nowrap">
                   <span className="text-gray-800">Hey, I'm Aman Raj</span>
                   <span className="ml-4 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-200 flex-shrink-0">
@@ -148,12 +148,12 @@ const Home: React.FC = React.memo(() => {
 
             {/* Right Column - 3D Element with Spline */}
             <motion.div 
-              className="hidden lg:flex items-center justify-end w-full max-w-2xl ml-16"
+              className="flex items-center justify-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl ml-0 mt-8 lg:mt-0"
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative w-full aspect-square">
+              <div className="relative w-full aspect-square max-w-md">
                 <SplineViewer />
               </div>
             </motion.div>

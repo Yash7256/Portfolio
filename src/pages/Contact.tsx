@@ -49,25 +49,25 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4 overflow-x-hidden relative">
+    <div className="min-h-screen py-12 sm:py-16 md:py-20 px-4 overflow-x-hidden relative">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <AnimatedSectionHeading title="Let's Connect" />
-          <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed text-center">
+          <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed text-center">
             Feel free to reach out for collaborations or just a friendly hello!
           </p>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto space-y-8">
+        <div className="max-w-2xl mx-auto space-y-5 sm:space-y-6 md:space-y-8">
             {/* Contact Info */}
-            <FloatingCard className="p-8" delay={0.2}>
-              <h3 className="text-3xl font-bold  mb-6">Get in Touch</h3>
-              <div className="space-y-6">
+            <FloatingCard className="p-6 md:p-8" delay={0.2}>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Get in Touch</h3>
+              <div className="space-y-5 md:space-y-6">
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
                   return (
@@ -79,14 +79,14 @@ const Contact: React.FC = () => {
                       transition={{ delay: 0.2 + index * 0.1 }}
                       whileHover={{ scale: 1.05, transition: { type: 'spring', stiffness: 400, damping: 10 } }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center space-x-4 group hover: transition-colors"
+                      className="flex items-center space-x-3 sm:space-x-4 group hover: transition-colors"
                     >
-                      <div className="w-12 h-12 bg-gradient-to-br from-white/10 to-white/5 rounded-full flex items-center justify-center border border-white/20 group-hover:border-white/30 transition-colors">
-                        <IconComponent className="w-5 h-5 " />
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-white/10 to-white/5 rounded-full flex items-center justify-center border border-white/20 group-hover:border-white/30 transition-colors">
+                        <IconComponent className="w-4 h-4 md:w-5 md:h-5 " />
                       </div>
                       <div>
                         <div className=" text-sm">{info.label}</div>
-                        <div className=" font-medium">{info.value}</div>
+                        <div className=" font-medium text-sm md:text-base">{info.value}</div>
                       </div>
                     </motion.a>
                   );
@@ -95,9 +95,9 @@ const Contact: React.FC = () => {
             </FloatingCard>
 
             {/* Social Links */}
-            <FloatingCard className="p-8" delay={0.3}>
-              <h3 className="text-3xl font-bold  mb-6">Follow Me</h3>
-              <div className="space-y-4">
+            <FloatingCard className="p-6 md:p-8" delay={0.3}>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Follow Me</h3>
+              <div className="space-y-3 md:space-y-4">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
@@ -112,12 +112,12 @@ const Contact: React.FC = () => {
                       className="w-full flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all group cursor-pointer"
                     >
                       <div className="flex items-center space-x-3">
-                        <IconComponent className="w-5 h-5  group-hover:" />
-                        <span className=" font-medium">{social.label}</span>
+                        <IconComponent className="w-4 h-4 md:w-5 md:h-5 group-hover:" />
+                        <span className=" font-medium text-sm md:text-base">{social.label}</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <span className=" text-sm group-hover:">{social.username}</span>
-                        <ExternalLink className="w-4 h-4  group-hover:" />
+                        <ExternalLink className="w-3 h-3 md:w-4 md:h-4 group-hover:" />
                       </div>
                     </motion.button>
                   );
@@ -126,10 +126,10 @@ const Contact: React.FC = () => {
             </FloatingCard>
 
             {/* Availability */}
-            <FloatingCard className="p-8 text-center" delay={0.4}>
-              <div className="mb-4">
-                <div className="w-3 h-3 bg-green-400 rounded-full mx-auto mb-3 animate-pulse" />
-                <h4 className=" font-semibold">Available for Projects</h4>
+            <FloatingCard className="p-6 md:p-8 text-center" delay={0.4}>
+              <div className="mb-3 md:mb-4">
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 bg-green-400 rounded-full mx-auto mb-2 md:mb-3 animate-pulse" />
+                <h4 className=" font-semibold text-lg md:text-xl">Available for Projects</h4>
                 <p className=" text-sm mt-2">
                   Currently accepting new freelance and contract opportunities.
                 </p>

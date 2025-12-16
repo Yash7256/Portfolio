@@ -140,7 +140,7 @@ function App() {
         <div className="relative min-h-screen overflow-x-hidden">
           <CustomCursor style={cursorStyle} />
           <FloatingNav navItems={navItems} />
-          <div className="pt-4">
+          <div className="pt-4 sm:pt-5 md:pt-6">
             <Suspense fallback={null}>
               <AnimatedRoutes />
             </Suspense>

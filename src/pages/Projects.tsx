@@ -48,7 +48,7 @@ const Projects: React.FC = () => {
   // Using projects data from the projects.ts file
 
   return (
-    <div className="min-h-screen py-20 px-4 overflow-x-hidden relative">
+    <div className="min-h-screen py-16 sm:py-20 px-4 overflow-x-hidden relative">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           ref={ref}
@@ -70,7 +70,7 @@ const Projects: React.FC = () => {
 
         {/* Projects Grid */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center px-4 sm:px-0 w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center px-4 sm:px-0 w-full"
           variants={container}
         >
           {projects.map((project, index) => (
@@ -84,7 +84,7 @@ const Projects: React.FC = () => {
                 delay={index * 0.1}
               >
                 {/* Project Image with Link to Details */}
-                <Link to={`/projects/${project.id}`} className="block h-48 overflow-hidden">
+                <Link to={`/projects/${project.id}`} className="block h-40 sm:h-48 overflow-hidden">
                   <motion.div
                     className="h-full w-full"
                     initial={{ scale: 1 }}
