@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { HoverBorderGradientButton } from '@/components/hover-border-gradient-demo';
+import { LayoutTextFlip } from '@/components/ui/layout-text-flip';
 
 // List of available spline files in the public/assets/spline directory
 // List of available spline files in the public/assets/spline directory
@@ -87,7 +88,14 @@ const Home: React.FC = React.memo(() => {
                         }}
                       />
                     </span>
-                    <span className="ml-2">CyberSec</span>
+                    {/* Updated to show only CyberSec and AI-Powered Cybersecurity Assistant */}
+                    <span className="ml-2 text-lg sm:text-xl md:text-2xl">
+                      <LayoutTextFlip 
+                        text="" 
+                        words={["CyberSec", "AI-Powered Cybersecurity Assistant"]} 
+                        duration={3000}
+                      />
+                    </span>
                   </span>
                 </span>
               </h1>
