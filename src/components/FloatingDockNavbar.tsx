@@ -25,24 +25,41 @@ export const FloatingDockNavbar = ({
   const [visible, setVisible] = useState(true);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isIdle, setIsIdle] = useState(false);
+  const [userActive, setUserActive] = useState(true); // Track user activity
   const location = useLocation();
   const pathname = location.pathname;
   
-  // Filter out the Home item from navItems
+  // Filter out the Home item from navItems for mobile menu
   const filteredNavItems = navItems.filter(item => item.name.toLowerCase() !== 'home');
 
   // Handle scroll events for showing/hiding navbar
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let timeoutId: NodeJS.Timeout;
+    let userActivityTimeout: NodeJS.Timeout;
     
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      
+      // Clear existing timeout
+      if (timeoutId) clearTimeout(timeoutId);
+      
+      // Set idle state after 5 seconds of no scrolling (increased from 3 seconds)
+      timeoutId = setTimeout(() => {
+        setIsIdle(true);
+      }, 5000);
+      
+      // Reset idle state when scrolling
+      setIsIdle(false);
       
       // Show navbar when scrolling up, hide when scrolling down
       if (currentScrollY < lastScrollY) {
         setVisible(true);
       } else if (currentScrollY > 100) { // Only hide if scrolled down more than 100px
         setVisible(false);
+        // Reset user activity when hiding due to scroll
+        setUserActive(false);
       }
       
       // Always show navbar at the top of the page
@@ -53,10 +70,29 @@ export const FloatingDockNavbar = ({
       lastScrollY = currentScrollY;
     };
     
+    // Track user activity (mouse movement, key presses)
+    const handleUserActivity = () => {
+      setUserActive(true);
+      if (userActivityTimeout) clearTimeout(userActivityTimeout);
+      
+      // Set user as inactive after 8 seconds of no activity (increased from 5 seconds)
+      userActivityTimeout = setTimeout(() => {
+        setUserActive(false);
+      }, 8000);
+    };
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('mousemove', handleUserActivity);
+    window.addEventListener('keydown', handleUserActivity);
+    window.addEventListener('touchstart', handleUserActivity);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleUserActivity);
+      window.removeEventListener('keydown', handleUserActivity);
+      window.removeEventListener('touchstart', handleUserActivity);
+      if (timeoutId) clearTimeout(timeoutId);
+      if (userActivityTimeout) clearTimeout(userActivityTimeout);
     };
   }, []);
 
@@ -72,48 +108,83 @@ export const FloatingDockNavbar = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Prepare items for the floating dock
-  const dockItems = navItems.map((item) => {
-    // Map Lucide icons to Tabler icons for consistency
-    let icon;
-    switch (item.name.toLowerCase()) {
-      case 'home':
-        icon = <HomeIcon className="w-5 h-5" />;
-        break;
-      case 'about':
-        icon = <User className="w-5 h-5" />;
-        break;
-      case 'experience':
-        icon = <BookOpen className="w-5 h-5" />;
-        break;
-      case 'skills':
-        icon = <Code className="w-5 h-5" />;
-        break;
-      case 'projects':
-        icon = <Briefcase className="w-5 h-5" />;
-        break;
-      case 'contact':
-        icon = <Mail className="w-5 h-5" />;
-        break;
-      default:
-        icon = item.icon || <IconLayoutNavbarCollapse className="w-5 h-5" />;
-    }
+  // Prepare items for the floating dock (exclude Home and add brand as first item)
+  const dockItems = navItems
+    .filter(item => item.name.toLowerCase() !== 'home')
+    .map((item) => {
+      // Map Lucide icons to Tabler icons for consistency
+      let icon;
+      switch (item.name.toLowerCase()) {
+        case 'about':
+          icon = <User className="w-5 h-5" />;
+          break;
+        case 'experience':
+          icon = <BookOpen className="w-5 h-5" />;
+          break;
+        case 'skills':
+          icon = <Code className="w-5 h-5" />;
+          break;
+        case 'projects':
+          icon = <Briefcase className="w-5 h-5" />;
+          break;
+        case 'contact':
+          icon = <Mail className="w-5 h-5" />;
+          break;
+        default:
+          icon = item.icon || <IconLayoutNavbarCollapse className="w-5 h-5" />;
+      }
 
-    return {
-      title: item.name,
-      icon: icon,
-      href: item.link // Keep original link for proper routing
-    };
-  });
+      return {
+        title: item.name,
+        icon: icon,
+        href: item.link // Keep original link for proper routing
+      };
+    });
+
+  // Add brand as the first item in the dock
+  const brandItem = {
+    title: 'Aman Raj',
+    icon: (
+      <div className="flex items-center space-x-2">
+        <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
+          <img 
+            src="/images/pf.png" 
+            alt="Aman Raj"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+      </div>
+    ),
+    href: '/'
+  };
+
+  // Insert brand item at the beginning
+  const dockItemsWithBrand = [brandItem, ...dockItems];
 
   return (
     <>
-      {/* Desktop Navigation with Floating Dock */}
-      <div className="hidden md:block fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[5000]">
-        <FloatingDock
-          items={dockItems}
-          desktopClassName="bg-white/80 backdrop-blur-lg border border-transparent/5 shadow-lg shadow-black/5"
-        />
+      {/* Desktop Navigation with Floating Dock at the Top */}
+      <div className="hidden md:block fixed top-6 left-1/2 transform -translate-x-1/2 z-[5000]">
+        <motion.div
+          initial={{
+            opacity: 1,
+            y: -100,
+          }}
+          animate={{
+            y: visible && !isIdle ? 0 : -100, // Simplified logic: hide when not visible or idle
+            opacity: visible && !isIdle ? 1 : 0,
+          }}
+          transition={{
+            duration: 0.5, // Increased from 0.3 to 0.5 for smoother animation
+            ease: [0.25, 0.46, 0.45, 0.94], // Softer easing curve
+          }}
+        >
+          <FloatingDock
+            items={dockItemsWithBrand}
+            desktopClassName="bg-white/80 backdrop-blur-lg border border-transparent/5 shadow-lg shadow-black/5"
+          />
+        </motion.div>
       </div>
 
       {/* Mobile Navigation - Traditional Navbar */}
@@ -124,12 +195,12 @@ export const FloatingDockNavbar = ({
             y: -100,
           }}
           animate={{
-            y: visible ? 0 : -100,
-            opacity: visible ? 1 : 0,
+            y: visible && !isIdle ? 0 : -100, // Simplified logic: hide when not visible or idle
+            opacity: visible && !isIdle ? 1 : 0,
           }}
           transition={{
-            duration: 0.3,
-            ease: [0.16, 1, 0.3, 1],
+            duration: 0.5, // Increased from 0.3 to 0.5 for smoother animation
+            ease: [0.25, 0.46, 0.45, 0.94], // Softer easing curve
           }}
           className={cn(
             "floating-nav relative overflow-hidden",
@@ -157,11 +228,11 @@ export const FloatingDockNavbar = ({
             <span 
               className="font-medium text-sm hidden sm:block"
               style={{
-                fontFamily: '"Dancing Script", sans-serif',
+                fontFamily: '"Dancing Script", cursive',
                 fontSize: '20px',
                 fontWeight: 700,
                 lineHeight: '150%',
-                color: '#171717',
+                color: '#000000',
                 letterSpacing: '0em',
                 textDecoration: 'none',
                 textTransform: 'none',
@@ -221,11 +292,11 @@ export const FloatingDockNavbar = ({
                     <span 
                       className="font-medium text-sm sm:text-base"
                       style={{
-                        fontFamily: '"Dancing Script", sans-serif',
+                        fontFamily: '"Dancing Script", cursive',
                         fontSize: '18px',
                         fontWeight: 700,
                         lineHeight: '150%',
-                        color: '#171717',
+                        color: '#000000',
                         letterSpacing: '0em',
                         textDecoration: 'none',
                         textTransform: 'none',
