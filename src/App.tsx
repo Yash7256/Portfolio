@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { Home as HomeIcon, User, Code, Briefcase, Mail, BookOpen, ArrowUpRight } from 'lucide-react';
-import { FloatingNav } from './components/ui/floating-navbar';
+import { FloatingDockNavbar } from './components/FloatingDockNavbar';
 import CustomCursor from './components/CustomCursor';
 
 // Lazy load pages
@@ -142,7 +142,7 @@ function App() {
       <Router>
         <div className="relative min-h-screen overflow-x-hidden">
           <CustomCursor style={cursorStyle} />
-          <FloatingNav navItems={navItems} />
+          <FloatingDockNavbar navItems={navItems} />
           <div className="pt-4 sm:pt-5 md:pt-6">
             <Suspense fallback={null}>
               <AnimatedRoutes />
