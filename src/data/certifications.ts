@@ -1,7 +1,7 @@
 export interface Certification {
   name: string;
   link: string;
-  type: 'global' | 'general';
+  type: 'global' | 'general' | 'competition';
   issuer?: string;
   date?: string;
 }

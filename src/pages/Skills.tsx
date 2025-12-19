@@ -6,13 +6,15 @@ import { ExternalLink, X } from 'lucide-react';
 import { certifications } from '../data';
 import { useState } from 'react';
 import { AnimatedSectionHeading } from '../components/ui/AnimatedSectionHeading';
+import { BentoGrid, BentoGridItem } from '../components/ui/bento-grid';
 
 // Categorize certifications
 const globalCerts = certifications.filter(cert => cert.type === 'global');
 const generalCerts = certifications.filter(cert => cert.type === 'general');
+const competitionCerts = certifications.filter(cert => cert.type === 'competition');
 
 const Skills: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'global' | 'general'>('global');
+  const [activeTab, setActiveTab] = useState<'global' | 'general' | 'competition'>('global');
   const [showModal, setShowModal] = useState(false);
   const skillCategories = [
     {
@@ -143,98 +145,103 @@ const Skills: React.FC = () => {
               >
                 General Certifications
               </button>
+              <button
+                onClick={() => setActiveTab('competition')}
+                className={`px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
+                  activeTab === 'competition' 
+                    ? 'bg-white dark:bg-gray-900 text-purple-600 dark:text-purple-400 shadow-md' 
+                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                Competitions
+              </button>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-            {(activeTab === 'global' ? globalCerts : generalCerts).slice(0, 4).map((cert, index) => {
+          {/* Bento Grid for Certifications */}
+          <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[15rem]">
+            {(activeTab === 'global' ? globalCerts : 
+              activeTab === 'general' ? generalCerts : 
+              competitionCerts).slice(0, 4).map((cert, index) => {
               const isCredly = cert.link.includes('credly');
               const isGoogleDrive = cert.link.includes('google.com');
               
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px 0px' }}
-                  transition={{ 
-                    delay: 0.1 * index,
-                    type: 'spring',
-                    stiffness: 100,
-                    damping: 15
-                  }}
-                  whileHover={{ y: -5 }}
-                  className="group relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  <div className="relative h-full bg-white dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl p-0.5 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <div className="relative h-full bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-900/80 p-5 md:p-6 rounded-[15px] flex flex-col">
-                      <div className="flex items-start space-x-3 md:space-x-4 mb-3 md:mb-4">
-                        <div className="flex-shrink-0 mt-1">
-                          {isCredly ? (
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                              <span className="text-white font-bold text-sm md:text-base">C</span>
-                            </div>
-                          ) : isGoogleDrive ? (
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
-                              <svg className="w-4 h-4 md:w-5 md:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm0 22c-5.514 0-10-4.486-10-10S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
-                                <path d="M12 6c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z" />
-                              </svg>
-                            </div>
-                          ) : (
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                              <svg className="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white group-hover:text-purple-500 transition-colors line-clamp-2">
-                            {cert.name}
-                          </h4>
-                          <div className="flex items-center mt-1 text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                            <span>{isCredly ? 'Credly' : isGoogleDrive ? 'Google Drive' : 'Certificate'}</span>
-                            <span className="mx-1 md:mx-2">•</span>
-                            <span>Verified</span>
-                          </div>
-                        </div>
+              // Create the header content for the bento grid item
+              const headerContent = (
+                <div className="flex items-start space-x-3 md:space-x-4 mb-3 md:mb-4 relative z-10">
+                  <div className="flex-shrink-0 mt-1">
+                    {isCredly ? (
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                        <span className="text-white font-bold text-sm md:text-base">C</span>
                       </div>
-                      
-                      <div className="mt-auto pt-3 md:pt-4 border-t border-gray-100 dark:border-gray-800">
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            window.open(cert.link, '_blank', 'noopener,noreferrer');
-                          }}
-                          className="w-full flex items-center justify-between group-hover:text-purple-500 transition-colors text-xs md:text-sm font-medium"
-                        >
-                          <span>View {isCredly ? 'Badge' : 'Certificate'}</span>
-                          <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-purple-100 dark:group-hover:bg-purple-900/50 transition-colors">
-                            <ExternalLink className="w-3 md:w-3.5 md:h-3.5" />
-                          </span>
-                        </button>
+                    ) : isGoogleDrive ? (
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg overflow-hidden">
+                        <img 
+                          src="/images/port.jpeg" 
+                          alt="Certificate" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                    </div>
+                    ) : (
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                        <svg className="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
-                </motion.div>
+                </div>
+              );
+              
+              // Select a background image based on index
+              const backgroundImages = [
+                '/images/dev.png',
+                '/images/devops.png',
+                '/images/gen.png',
+                '/images/project-badge.jpg'
+              ];
+              const backgroundImage = backgroundImages[index % backgroundImages.length];
+              
+              // Create the icon content for the bento grid item
+              const iconContent = (
+                <div className="flex-1 min-w-0 relative z-10">
+                  <h4 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white group-hover/bento:text-purple-500 transition-colors line-clamp-2">
+                    {cert.name}
+                  </h4>
+                  <div className="flex items-center mt-1 text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                    <span>{isCredly ? 'Credly' : isGoogleDrive ? 'Google Drive' : 'Certificate'}</span>
+                    <span className="mx-1 md:mx-2">•</span>
+                    <span>Verified</span>
+                  </div>
+                </div>
+              );
+              
+              return (
+                <div 
+                  key={index}
+                  className="group/bento shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border border-neutral-200 bg-white p-4 transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none relative overflow-hidden cursor-pointer"
+                  style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}
+                  onClick={() => window.open(cert.link, '_blank', 'noopener,noreferrer')}
+                >
+                  <div className="absolute inset-0 bg-white dark:bg-black opacity-90"></div>
+                  <div className="relative z-10">
+                    {headerContent}
+                    {iconContent}
+                  </div>
+                </div>
               );
             })}
-            
-            {/* View All Button */}
-            <div className="col-span-full flex justify-center mt-6 md:mt-8">
-              <button
-                onClick={() => setShowModal(true)}
-                className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center text-sm md:text-base"
-              >
-                View All {activeTab === 'global' ? 'Global' : 'General'} Certifications
-                <ExternalLink className="ml-1 md:ml-2 w-3.5 h-3.5 md:w-4 md:h-4" />
-              </button>
-            </div>
+          </BentoGrid>
+          
+          {/* View All Button */}
+          <div className="flex justify-center mt-6 md:mt-8">
+            <button
+              onClick={() => setShowModal(true)}
+              className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center text-sm md:text-base"
+            >
+              View All {activeTab === 'global' ? 'Global' : activeTab === 'general' ? 'General' : 'Competition'} Certifications
+              <ExternalLink className="ml-1 md:ml-2 w-3.5 h-3.5 md:w-4 md:h-4" />
+            </button>
           </div>
         </div>
         
@@ -250,7 +257,7 @@ const Skills: React.FC = () => {
             >
               <div className="sticky top-0 bg-white dark:bg-gray-900 p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
                 <h3 className="text-xl font-bold">
-                  {activeTab === 'global' ? 'Global' : 'General'} Certifications
+                  {activeTab === 'global' ? 'Global' : activeTab === 'general' ? 'General' : 'Competition'} Certifications
                 </h3>
                 <button 
                   onClick={() => setShowModal(false)}
@@ -262,7 +269,9 @@ const Skills: React.FC = () => {
               </div>
               
               <div className="grid md:grid-cols-2 gap-6 p-6">
-                {(activeTab === 'global' ? globalCerts : generalCerts).map((cert, index) => {
+                {(activeTab === 'global' ? globalCerts : 
+                  activeTab === 'general' ? generalCerts : 
+                  competitionCerts).map((cert, index) => {
                   const isCredly = cert.link.includes('credly');
                   const isGoogleDrive = cert.link.includes('google.com');
                   
@@ -286,7 +295,7 @@ const Skills: React.FC = () => {
                               ) : isGoogleDrive ? (
                                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
                                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm0 22c-5.514 0-10-4.486-10-10S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+                                    <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm0 22c-5.514 0-10-4.486-10-10S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z" />
                                     <path d="M12 6c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z" />
                                   </svg>
                                 </div>

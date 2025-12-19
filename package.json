@@ -19,6 +19,7 @@
     "@splinetool/runtime": "^1.12.3",
     "@tabler/icons-react": "^3.36.0",
     "@vercel/analytics": "^1.6.1",
+    "aceternity-ui": "^0.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
