@@ -118,7 +118,9 @@ const ProjectDetails: React.FC = () => {
                 )}
                 <HoverBorderGradientButton
                   as="a"
-                  href="#case-study"
+                  href="https://amanraj-blog.vercel.app/case-studies/cybersec-ai-powered-cybersecurity-assistant-case-study"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   icon={BookOpen}
                   className="text-sm md:text-base"
                 >

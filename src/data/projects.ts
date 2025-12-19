@@ -69,8 +69,8 @@ export const projects: Project[] = [
       cybersec4,
       cybersec5
     ],
-    github: 'https://github.com/yourusername/cybersec',
-    demo: 'https://cybersec-demo.example.com',
+    github: 'https://github.com/Yash7256/CyberSec-CLI',
+    demo: 'https://cybersec-kru4.onrender.com/',
     links: [
       {
         label: 'API Documentation',
