@@ -5,30 +5,6 @@ import FloatingCard from '../components/ui/FloatingCard';
 import { AnimatedSectionHeading } from '../components/ui/AnimatedSectionHeading';
 
 const About: React.FC = () => {
-  const features = [
-    {
-      icon: Code,
-      title: 'GEN AI',
-      description: 'Building AI models and applications using modern machine learning frameworks.',
-      iconBg: 'from-blue-500 to-cyan-400',
-      hoverGradient: 'from-blue-600/20 to-cyan-500/20'
-    },
-    {
-      icon: Palette,
-      title: 'CyberSecurity',
-      description: 'Defending against cyber threats and vulnerabilities using ethical hacking and penetration testing.',
-      iconBg: 'from-purple-500 to-indigo-500',
-      hoverGradient: 'from-purple-600/20 to-indigo-600/20'
-    },
-    {
-      icon: Zap,
-      title: 'Networking',
-      description: 'Designing and implementing network architectures to ensure optimal performance and security.',
-      iconBg: 'from-amber-500 to-orange-500',
-      hoverGradient: 'from-amber-600/20 to-orange-600/20'
-    }
-  ];
-
   return (
     <div className="min-h-screen py-12 sm:py-16 md:py-20 px-4 overflow-x-hidden relative">
       <div className="max-w-6xl mx-auto">
@@ -46,15 +22,15 @@ const About: React.FC = () => {
               </p>
               
               <p className="text-base sm:text-lg text-gray-800 leading-relaxed">
-                I'm a 3rd-year Computer Engineering student with a passion for blockchain, cybersecurity, and frontend development.
+               I'm a 3rd-year Computer Engineering student with a passion for full-stack development and generative AI.
               </p>
               
               <p className="text-lg sm:text-xl text-gray-800 leading-relaxed">
-                I enjoy exploring modern web technologies and building secure, innovative digital solutions. With a strong foundation in coding and problem-solving, I focus on writing clean, efficient code.
+                I enjoy exploring modern web technologies and building intelligent, innovative digital solutions. 
               </p>
               
               <p className="text-lg sm:text-xl text-gray-800 leading-relaxed">
-                My goal is to turn innovative ideas into impactful projects that make a difference.
+                With a strong foundation in coding and problem-solving, I focus on writing clean, efficient code. My goal is to turn innovative ideas into impactful projects that make a difference.
               </p>
             </div>
           </motion.div>
@@ -83,8 +59,15 @@ const About: React.FC = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-black mb-4 md:mb-6">My Journey</h3>
             <div className="space-y-4 text-gray-800 leading-relaxed">
               <p>
-                Started my journey in tech with a fascination for building on Solana, along with cybersecurity and frontend development. What began as curiosity about websites has grown into creating secure, innovative, and impactful digital experiences powered by modern web and blockchain technologies.
+                Started my journey in tech with a fascination for full-stack development and generative AI:
               </p>
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                <li>Began with curiosity about websites and web technologies</li>
+                <li>Evolved into creating intelligent, innovative, and impactful digital experiences</li>
+                <li>Leveraging modern web technologies and AI-driven solutions</li>
+                <li>Currently building CyberSec - an AI-powered cybersecurity assessment tool</li>
+                <li>Combining full-stack development expertise with cutting-edge generative AI capabilities</li>
+              </ul>
             </div>
           </FloatingCard>
 
@@ -129,32 +112,6 @@ const About: React.FC = () => {
               </div>
             </div>
           </FloatingCard>
-        </div>
-
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 md:mt-20">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <FloatingCard 
-                key={index} 
-                className="p-6 md:p-8 h-full flex flex-col items-center text-center"
-                hoverGradient={feature.hoverGradient}
-                delay={index * 0.1}
-              >
-                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl mb-4 md:mb-6 flex items-center justify-center bg-gradient-to-br ${feature.iconBg} shadow-lg`}>
-                  <IconComponent className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-black mb-2 md:mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-800 leading-relaxed flex-grow text-sm md:text-base">
-                  {feature.description}
-                </p>
-                <div className="mt-4 md:mt-6 w-8 h-0.5 bg-gray-800 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </FloatingCard>
-            );
-          })}
         </div>
       </div>
     </div>

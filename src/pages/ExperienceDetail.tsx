@@ -136,14 +136,24 @@ const ExperienceDetail: React.FC = () => {
           
           {experience.certificateLink && (
             <HoverBorderGradientButton
-              as="a"
-              href={experience.certificateLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              as="button"
+              onClick={(e) => {
+                e.preventDefault();
+                // Convert view URL to download URL for Google Drive
+                const downloadUrl = experience.certificateLink.replace('export=view', 'export=download');
+                // Create a temporary link and trigger download
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = experience.certificateName || 'certificate';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
               className="text-sm font-medium text-gray-900 dark:text-white py-2 px-4 md:py-2.5 md:px-5 w-auto min-w-[140px] md:min-w-[180px] justify-center"
               containerClassName="rounded-full"
             >
-              View Certificate
+              Download Certificate
             </HoverBorderGradientButton>
           )}
         </motion.div>
