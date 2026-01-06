@@ -101,7 +101,7 @@ const Home: React.FC = React.memo(() => {
               </h1>
 
               <p className="text-gray-500 text-base sm:text-lg max-w-lg leading-relaxed">
-                Crafting elegant digital experiences through thoughtful design and clean, efficient code.
+                A DEVELOPER WHO THINKS LIKE AN ATTACKER, BUILDS LIKE A DEFENDER
               </p>
 
               <motion.div
