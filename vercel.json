@@ -1,16 +1,9 @@
 {
   "version": 2,
-  "name": "aman-raj-portfolio",
   "builds": [
     {
       "src": "**/*",
       "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
     }
   ],
   "headers": [
@@ -24,7 +17,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(css|js|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))",
+      "source": "/(.*).(css|js|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)",
       "headers": [
         {
           "key": "Cache-Control",
