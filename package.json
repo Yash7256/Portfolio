@@ -1,0 +1,27 @@
+{
+  "name": "aman-raj-portfolio",
+  "version": "2.0.0",
+  "description": "Aman Raj - GEN AI & DevOps Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Static site - no build step required'",
+    "dev": "serve . -l 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "gen-ai",
+    "devops",
+    "cybersecurity",
+    "neo-brutalism",
+    "static-site"
+  ],
+  "author": "Aman Raj",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
