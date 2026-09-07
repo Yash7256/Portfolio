@@ -46,7 +46,7 @@ export default function ActionButtons() {
         </svg>
         Send an email
       </a>
-      {emailFormOpen && <EmailForm />}
+      {emailFormOpen && <EmailForm onClose={() => setEmailFormOpen(false)} />}
     </div>
   );
 }
