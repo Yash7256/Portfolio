@@ -1,4 +1,4 @@
-export type CardKey = 'about' | 'portfolio' | 'contact' | 'resume'
+export type CardKey = 'about' | 'projects' | 'contact' | 'resume' | 'blog'
 
 export interface Content {
   name: string
@@ -10,9 +10,10 @@ export interface Content {
   photo: string
   links: {
     about: string
-    portfolio: string
+    projects: string
     contact: string
     resume: string
+    blog: string
   }
 }
 
@@ -24,8 +25,9 @@ export const content: Content = {
   photo: '/portrait.png',
   links: {
     about: '/about',
-    portfolio: '/portfolio',
+    projects: '/projects',
     contact: '/contact',
     resume: '/resume.pdf',
+    blog: '/blog',
   },
 }

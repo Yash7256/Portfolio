@@ -4,14 +4,16 @@ interface LiveClockProps {
   /** IANA time zone, e.g. "Asia/Kolkata". */
   timeZone: string
   /** City label shown before the time. */
-  city: string
+  city?: string
+  /** Set false to render the time alone. */
+  showCity?: boolean
 }
 
 /**
  * Live clock that ticks every second in the given time zone.
- * Renders as "City • 6:16 PM".
+ * Renders as "City • 6:16 PM", or just "6:16 PM" when `showCity` is false.
  */
-export function LiveClock({ timeZone, city }: LiveClockProps) {
+export function LiveClock({ timeZone, city, showCity = true }: LiveClockProps) {
   const formatter = useMemo(
     () =>
       new Intl.DateTimeFormat('en-US', {
@@ -34,7 +36,8 @@ export function LiveClock({ timeZone, city }: LiveClockProps) {
 
   return (
     <time className="tabular-nums whitespace-nowrap">
-      {city} • {time}
+      {showCity && city ? `${city} • ` : ''}
+      {time}
     </time>
   )
 }
