@@ -3,9 +3,11 @@ import { BentoCard } from './BentoCard'
 
 /** Phrases rendered in white while the rest of the bio stays muted. */
 const HIGHLIGHTS = [
-  'software developer',
-  'end to end',
-  'shipping software people enjoy using',
+  'full-stack software engineer',
+  'three OCI professional certifications',
+  'end-to-end development',
+  "Designer's Room",
+  "Let's turn it into reality",
 ]
 
 const highlightPattern = new RegExp(

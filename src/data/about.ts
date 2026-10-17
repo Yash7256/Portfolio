@@ -35,7 +35,7 @@ export interface About {
 }
 
 export const about: About = {
-  bio: "I'm Aman Raj, a software developer based in Jabalpur, India. I design and build products end to end — from database schema and APIs to the last pixel of the interface — with a focus on shipping software people enjoy using.",
+  bio: "I'm Aman Raj, a full-stack software engineer with three OCI professional certifications in Development, DevOps, and Generative AI. I've built websites for K-adio, a design agency in Jabalpur, and led the end-to-end development of Sedative Physio, an EdTech platform for physiotherapy students, from system architecture to deployment. Right now, I'm building Designer's Room, a platform for UI/UX, graphic designers, and design engineers. Have an idea worth building? Let's turn it into reality.",
   availability: 'Open to work · Available for freelance',
   stats: [
     { value: '3+', label: 'Years building' },
@@ -62,38 +62,46 @@ export const about: About = {
   skills: [
     {
       category: 'Languages',
-      items: ['JavaScript', 'TypeScript', 'Python'],
+      items: ['JavaScript', 'TypeScript', 'Python', 'SQL'],
     },
     {
       category: 'Frontend',
-      items: ['React.js', 'Next.js', 'Tailwind CSS'],
+      items: ['React.js', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3'],
     },
     {
       category: 'Backend',
-      items: ['Node.js', 'Express.js', 'FastAPI', 'REST APIs', 'JWT Authentication'],
+      items: ['Node.js', 'Express.js', 'FastAPI', 'REST APIs', 'JWT Authentication', 'WebSockets'],
     },
     {
       category: 'Databases',
-      items: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma'],
+      items: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'Drizzle ORM', 'Supabase'],
     },
     {
-      category: 'AI & GenAI',
+      category: 'AI Engineering',
       items: [
-        'Generative AI',
-        'LLM Integration',
-        'RAG',
-        'Prompt Engineering',
-        'AI Agents',
         'OCI Generative AI',
+        'LLM Integration',
+        'Prompt Engineering',
+        'RAG',
+        'LangChain',
       ],
     },
     {
-      category: 'DevOps & Cloud',
-      items: ['Docker', 'Kubernetes', 'AWS', 'Terraform', 'CI/CD'],
+      category: 'Cloud & DevOps',
+      items: [
+        'Oracle Cloud Infrastructure',
+        'Docker',
+        'Kubernetes',
+        'Terraform',
+        'CI/CD',
+        'Linux',
+        'Git',
+        'GitHub',
+      ],
     },
     {
-      category: 'Tools & Monitoring',
-      items: ['Git', 'GitHub', 'Prometheus', 'Grafana', 'Postman'],
+      category: 'Architecture & Quality',
+      items: ['System Design', 'API Architecture', 'Database Design', 'Testing', 'Debugging'],
     },
   ],
   links: [
