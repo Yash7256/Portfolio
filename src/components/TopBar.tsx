@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { content } from '../data/content'
 import { LiveClock } from './LiveClock'
 
@@ -12,12 +11,6 @@ export function TopBar() {
 
       <div className="hidden md:absolute md:left-[230px] md:block">
         <span className="font-normal text-white/80">{content.role}</span>
-        <Link
-          to={content.links.blog}
-          className="ml-4 font-normal text-white/45 transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-bg focus-visible:outline-none"
-        >
-          Blog
-        </Link>
       </div>
 
       <div className="flex items-center gap-5">

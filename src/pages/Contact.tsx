@@ -8,9 +8,9 @@ import { SocialsCard } from '../components/SocialsCard'
 import { LocationCard } from '../components/LocationCard'
 import { AvailabilityCard } from '../components/AvailabilityCard'
 
-/** Route page shell — absolute so enter/exit can overlap during transitions. */
+/** Route page shell — scrolls vertically when the grid overflows. */
 const pageClass =
-  'no-scrollbar absolute inset-0 z-10 overflow-y-auto px-4 pt-4 pb-4 md:overflow-hidden md:px-5 md:pt-5 md:pb-5'
+  'no-scrollbar absolute inset-0 z-10 flex flex-col overflow-y-auto px-4 pt-4 pb-4 md:px-5 md:pt-5 md:pb-5'
 
 function BackPill() {
   return (
@@ -60,41 +60,49 @@ export function Contact() {
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className={pageClass}
     >
-      <Hero label="Contact" action={<BackPill />} />
+      <div className="flex w-full flex-1 flex-col">
+        <Hero
+          label="Contact"
+          action={<BackPill />}
+          inFlow
+          hideReflection
+          top="clamp(36px, 5.5vh, 72px)"
+        />
 
-      <motion.main
-        variants={stagger}
-        className="relative z-10 mt-8 grid grid-cols-1 gap-4 md:absolute md:inset-x-5 md:top-[22%] md:bottom-5 md:mt-0 md:grid-cols-12 md:grid-rows-2"
-      >
-        <motion.div
-          variants={item}
-          className="order-2 md:order-1 md:col-span-7"
+        <motion.main
+          variants={stagger}
+          className="relative z-10 mt-6 grid grid-cols-1 gap-3 md:mt-8 md:grid-cols-12 lg:mt-10"
         >
-          <ContactForm
-            layoutId={reduce ? undefined : 'contact-card'}
-            className="h-full min-h-[360px] md:min-h-0"
-          />
-        </motion.div>
+          <motion.div
+            variants={item}
+            className="order-2 md:order-1 md:col-span-7"
+          >
+            <ContactForm
+              layoutId={reduce ? undefined : 'contact-card'}
+              className="h-full min-h-[360px]"
+            />
+          </motion.div>
 
-        <motion.div
-          variants={item}
-          className="order-1 md:order-2 md:col-span-5"
-        >
-          <EmailCard className="h-full min-h-[160px] md:min-h-0" />
-        </motion.div>
+          <motion.div
+            variants={item}
+            className="order-1 md:order-2 md:col-span-5"
+          >
+            <EmailCard className="h-full min-h-[200px]" />
+          </motion.div>
 
-        <motion.div variants={item} className="order-3 md:col-span-4">
-          <SocialsCard className="h-full min-h-[200px] md:min-h-0" />
-        </motion.div>
+          <motion.div variants={item} className="order-3 md:col-span-4">
+            <SocialsCard className="h-full min-h-[200px]" />
+          </motion.div>
 
-        <motion.div variants={item} className="order-4 md:col-span-4">
-          <LocationCard className="h-full min-h-[180px] md:min-h-0" />
-        </motion.div>
+          <motion.div variants={item} className="order-4 md:col-span-4">
+            <LocationCard className="h-full min-h-[200px]" />
+          </motion.div>
 
-        <motion.div variants={item} className="order-5 md:col-span-4">
-          <AvailabilityCard className="h-full min-h-[180px] md:min-h-0" />
-        </motion.div>
-      </motion.main>
+          <motion.div variants={item} className="order-5 md:col-span-4">
+            <AvailabilityCard className="h-full min-h-[200px]" />
+          </motion.div>
+        </motion.main>
+      </div>
     </motion.div>
   )
 }

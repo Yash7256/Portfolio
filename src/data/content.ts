@@ -19,7 +19,7 @@ export interface Content {
 
 export const content: Content = {
   name: 'Aman Raj',
-  role: 'Software Developer',
+  role: 'Software Engineer',
   city: 'Jabalpur',
   timeZone: 'Asia/Kolkata',
   photo: '/portrait.png',

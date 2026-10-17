@@ -11,14 +11,14 @@ export function SkillsCard({ className = '' }: { className?: string }) {
     >
       {about.skills.map((group) => (
         <div key={group.category}>
-          <div className="text-[10px] font-medium tracking-[0.08em] text-[#8a8a8a] uppercase">
+          <div className="text-[12px] font-medium tracking-[0.08em] text-[#8a8a8a] uppercase">
             {group.category}
           </div>
-          <div className="mt-1.5 flex flex-wrap gap-1.5">
+          <div className="mt-2 flex flex-wrap gap-1.5">
             {group.items.map((skill) => (
               <span
                 key={skill}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-[10px] py-[3px] text-[12px] text-white/80"
+                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[13px] text-white/80"
               >
                 {skill}
               </span>

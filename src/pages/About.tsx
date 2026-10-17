@@ -51,7 +51,7 @@ export function About() {
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className={pageClass}
     >
-      <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col">
+      <div className="flex w-full flex-1 flex-col">
         <Hero
           label="About"
           action={<BackPill />}

@@ -9,7 +9,7 @@ import { getAllTags, posts } from '../lib/posts'
 
 /** Route page shell — scrolls vertically when the grid overflows. */
 const pageClass =
-  'no-scrollbar absolute inset-0 z-10 overflow-y-auto px-4 pt-4 pb-4 md:px-5 md:pt-5 md:pb-5'
+  'no-scrollbar absolute inset-0 z-10 flex flex-col overflow-y-auto px-4 pt-4 pb-4 md:px-5 md:pt-5 md:pb-5'
 
 function BackPill() {
   return (
@@ -41,32 +41,40 @@ export function Blog() {
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className={pageClass}
     >
-      <Hero label="Blog" action={<BackPill />} />
+      <div className="flex w-full flex-1 flex-col">
+        <Hero
+          label="Blog"
+          action={<BackPill />}
+          inFlow
+          hideReflection
+          top="clamp(36px, 5.5vh, 72px)"
+        />
 
-      <main className="relative z-10 mt-8 md:mt-[calc(22vh-1.25rem)]">
-        {posts.length === 0 ? (
-          <div className="flex min-h-[45vh] items-center justify-center">
-            <div className="grain rounded-[32px] border border-white/[0.05] bg-card px-10 py-16 text-center">
-              <p className="text-[20px] text-white/70">Nothing here yet.</p>
+        <main className="relative z-10 mt-6 md:mt-8 lg:mt-10">
+          {posts.length === 0 ? (
+            <div className="flex min-h-[45vh] items-center justify-center">
+              <div className="grain rounded-[32px] border border-white/[0.05] bg-card px-10 py-16 text-center">
+                <p className="text-[20px] text-white/70">Nothing here yet.</p>
+              </div>
             </div>
-          </div>
-        ) : (
-          <>
-            <div className="relative z-30 mb-4">
-              <TagFilter
-                tags={tags}
-                active={activeTag}
-                onChange={setActiveTag}
+          ) : (
+            <>
+              <div className="relative z-30 mb-4">
+                <TagFilter
+                  tags={tags}
+                  active={activeTag}
+                  onChange={setActiveTag}
+                />
+              </div>
+              <PostGrid
+                posts={posts}
+                activeTag={activeTag}
+                featuredLayoutId={reduce ? undefined : 'blog-card'}
               />
-            </div>
-            <PostGrid
-              posts={posts}
-              activeTag={activeTag}
-              featuredLayoutId={reduce ? undefined : 'blog-card'}
-            />
-          </>
-        )}
-      </main>
+            </>
+          )}
+        </main>
+      </div>
     </motion.div>
   )
 }

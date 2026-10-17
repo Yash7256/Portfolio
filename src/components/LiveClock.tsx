@@ -11,7 +11,7 @@ interface LiveClockProps {
 
 /**
  * Live clock that ticks every second in the given time zone.
- * Renders as "City • 6:16 PM", or just "6:16 PM" when `showCity` is false.
+ * Renders as "City • 6:16:32 PM", or just "6:16:32 PM" when `showCity` is false.
  */
 export function LiveClock({ timeZone, city, showCity = true }: LiveClockProps) {
   const formatter = useMemo(
@@ -20,6 +20,7 @@ export function LiveClock({ timeZone, city, showCity = true }: LiveClockProps) {
         timeZone,
         hour: 'numeric',
         minute: '2-digit',
+        second: '2-digit',
         hour12: true,
       }),
     [timeZone],

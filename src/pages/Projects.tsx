@@ -6,7 +6,7 @@ import { ProjectGrid } from '../components/ProjectGrid'
 
 /** Route page shell — scrolls vertically when the grid overflows. */
 const pageClass =
-  'no-scrollbar absolute inset-0 z-10 overflow-y-auto px-4 pt-4 pb-4 md:px-5 md:pt-5 md:pb-5'
+  'no-scrollbar absolute inset-0 z-10 flex flex-col overflow-y-auto px-4 pt-4 pb-4 md:px-5 md:pt-5 md:pb-5'
 
 function BackPill() {
   return (
@@ -36,11 +36,19 @@ export function Projects() {
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className={pageClass}
     >
-      <Hero label="Projects" action={<BackPill />} />
+      <div className="flex w-full flex-1 flex-col">
+        <Hero
+          label="Projects"
+          action={<BackPill />}
+          inFlow
+          hideReflection
+          top="clamp(36px, 5.5vh, 72px)"
+        />
 
-      <main className="relative z-10 mt-8 md:mt-[calc(22vh-1.25rem)]">
-        <ProjectGrid featuredLayoutId={reduce ? undefined : 'projects-card'} />
-      </main>
+        <main className="relative z-10 mt-6 md:mt-8 lg:mt-10">
+          <ProjectGrid featuredLayoutId={reduce ? undefined : 'projects-card'} />
+        </main>
+      </div>
     </motion.div>
   )
 }
