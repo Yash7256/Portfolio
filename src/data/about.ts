@@ -79,7 +79,7 @@ export const about: About = {
     {
       category: 'AI Engineering',
       items: [
-        'OCI Generative AI',
+        'Generative AI',
         'LLM Integration',
         'Prompt Engineering',
         'RAG',
@@ -89,7 +89,6 @@ export const about: About = {
     {
       category: 'Cloud & DevOps',
       items: [
-        'Oracle Cloud Infrastructure',
         'Docker',
         'Kubernetes',
         'Terraform',
