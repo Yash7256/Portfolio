@@ -24,9 +24,9 @@ export function StatsCard({ className = '' }: { className?: string }) {
   if (reduce) {
     return (
       <BentoCard label="Currently Cooking" variant="page" className={className}>
-        <div className="flex h-full flex-col items-center justify-center gap-6 px-5 pt-14 pb-6 text-center">
-          <img src="/dstext.svg" alt="" className="w-[85%]" />
-          <img src="/dslogo.svg" alt="" className="w-16" />
+        <div className="flex h-full flex-col items-center justify-center gap-4 px-5 pt-12 pb-5 text-center">
+          <img src="/dstext.svg" alt="" className="w-[62%]" />
+          <img src="/dslogo.svg" alt="" className="w-14" />
         </div>
       </BentoCard>
     )
@@ -39,14 +39,14 @@ export function StatsCard({ className = '' }: { className?: string }) {
       className={className}
       contentClassName="overflow-hidden"
     >
-      <div className="flex h-full items-center justify-center px-5 pt-14 pb-6">
+      <div className="flex h-full items-center justify-center px-5 pt-12 pb-5">
         <AnimatePresence mode="wait">
           {showTextLogo ? (
             <motion.img
               key="dstext"
               src="/dstext.svg"
               alt="Currently cooking"
-              className="w-[85%]"
+              className="w-[62%]"
               {...fade}
             />
           ) : (
@@ -54,7 +54,7 @@ export function StatsCard({ className = '' }: { className?: string }) {
               key="dslogo"
               src="/dslogo.svg"
               alt=""
-              className="w-16"
+              className="w-14"
               {...fade}
             />
           )}

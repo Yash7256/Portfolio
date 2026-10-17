@@ -39,18 +39,18 @@ export function BioCard({
       variant="page"
       layoutId={layoutId}
       className={className}
-      contentClassName="flex flex-col justify-end px-6 pt-[72px] pb-6"
+      contentClassName="flex flex-col justify-end px-5 pt-14 pb-5"
     >
-      <p className="max-w-[92%] text-[clamp(22px,2.2vw,32px)] leading-[1.35] text-[#9a9a9a]">
+      <p className="max-w-[92%] text-[clamp(16px,1.4vw,21px)] leading-[1.4] text-[#9a9a9a]">
         {renderBio(about.bio)}
       </p>
 
-      <div className="mt-1.5 flex items-center gap-2.5">
+      <div className="mt-1.5 flex items-center gap-2">
         <span
           aria-hidden="true"
-          className="pulse-dot block size-2 shrink-0 rounded-full bg-[#22c55e]"
+          className="pulse-dot block size-1.5 shrink-0 rounded-full bg-[#22c55e]"
         />
-        <span className="text-[14px] text-[#8a8a8a]">{about.availability}</span>
+        <span className="text-[13px] text-[#8a8a8a]">{about.availability}</span>
       </div>
     </BentoCard>
   )

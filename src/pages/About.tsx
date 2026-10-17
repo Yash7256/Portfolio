@@ -51,32 +51,34 @@ export function About() {
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className={pageClass}
     >
-      <Hero
-        label="About"
-        action={<BackPill />}
-        inFlow
-        hideReflection
-        top="clamp(36px, 5.5vh, 72px)"
-      />
-
-      <main className="relative z-10 mt-6 grid w-full grid-cols-1 items-stretch gap-4 md:mt-8 md:grid-cols-2 lg:mt-10 lg:flex-1 lg:grid-cols-12 lg:grid-rows-[auto_minmax(min-content,1fr)]">
-        <div className="grid gap-4 md:col-span-2 lg:col-span-7 lg:grid-rows-[minmax(0,1fr)_minmax(148px,auto)_auto]">
-          <BioCard
-            layoutId={reduce ? undefined : 'about-card'}
-            className="min-h-[160px] lg:min-h-0"
-          />
-          <StatsCard className="min-h-[120px] lg:min-h-0" />
-          <ExperienceCard className="min-h-[180px] lg:min-h-0" />
-        </div>
-
-        <PhotoCard
-          parallax
-          links={about.links}
-          className="aspect-[4/5] min-h-[220px] md:col-span-1 md:aspect-auto md:min-h-0 lg:col-span-5"
+      <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col">
+        <Hero
+          label="About"
+          action={<BackPill />}
+          inFlow
+          hideReflection
+          top="clamp(36px, 5.5vh, 72px)"
         />
 
-        <SkillsCard className="min-h-[220px] md:col-span-1 lg:col-span-12" />
-      </main>
+        <main className="relative z-10 mt-6 grid w-full grid-cols-1 items-stretch gap-3 md:mt-8 md:grid-cols-2 lg:mt-10 lg:flex-1 lg:grid-cols-12 lg:grid-rows-[auto_minmax(min-content,1fr)]">
+          <div className="grid gap-3 md:col-span-2 lg:col-span-7 lg:grid-rows-[minmax(0,1fr)_minmax(120px,auto)_auto]">
+            <BioCard
+              layoutId={reduce ? undefined : 'about-card'}
+              className="min-h-[160px] lg:min-h-0"
+            />
+            <StatsCard className="min-h-[120px] lg:min-h-0" />
+            <ExperienceCard className="min-h-[180px] lg:min-h-0" />
+          </div>
+
+          <PhotoCard
+            parallax
+            links={about.links}
+            className="aspect-[4/5] min-h-[220px] md:col-span-1 md:aspect-auto md:min-h-0 lg:col-span-5"
+          />
+
+          <SkillsCard className="min-h-[220px] md:col-span-1 lg:col-span-12" />
+        </main>
+      </div>
     </motion.div>
   )
 }

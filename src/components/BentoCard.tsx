@@ -49,7 +49,7 @@ export function BentoCard({
 
       {!bare && label ? (
         variant === 'page' ? (
-          <span className="pointer-events-none absolute top-6 left-6 text-[14px] leading-none tracking-[0.08em] text-[#888] uppercase">
+          <span className="pointer-events-none absolute top-5 left-5 text-[12px] leading-none tracking-[0.08em] text-[#888] uppercase">
             {label}
           </span>
         ) : (

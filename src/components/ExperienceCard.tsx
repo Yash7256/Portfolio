@@ -29,14 +29,14 @@ export function ExperienceCard({ className = '' }: { className?: string }) {
       className={className}
       contentClassName=""
     >
-      <div className="flex h-full flex-col justify-center px-6 pt-14 pb-6">
+      <div className="flex h-full flex-col justify-center px-5 pt-12 pb-5">
         <ol className="flex flex-col">
           {ordered.map((item, index) => (
-            <li key={`${item.role}-${item.period}`} className="flex gap-4">
+            <li key={`${item.role}-${item.period}`} className="flex gap-3.5">
               <div className="flex flex-col items-center">
                 <span
                   aria-hidden="true"
-                  className={`mt-3.5 size-2 shrink-0 rounded-full ${
+                  className={`mt-2.5 size-1.5 shrink-0 rounded-full ${
                     index === 0 ? 'bg-white' : 'bg-[#555]'
                   }`}
                 />
@@ -48,26 +48,26 @@ export function ExperienceCard({ className = '' }: { className?: string }) {
                 ) : null}
               </div>
 
-              <div className={index < ordered.length - 1 ? 'pb-5' : ''}>
+              <div className={index < ordered.length - 1 ? 'pb-4' : ''}>
                 <div className="flex items-center justify-between gap-3">
                   <span className="flex min-w-0 items-center gap-2">
-                    <span className="text-[18px] leading-tight text-white">
+                    <span className="text-[15px] leading-tight text-white">
                       {item.role}
                     </span>
                     {item.tag ? (
-                      <span className="shrink-0 rounded-full bg-[#222] px-2 py-0.5 text-[11px] leading-none text-white/90">
+                      <span className="shrink-0 rounded-full bg-[#222] px-2 py-0.5 text-[10px] leading-none text-white/90">
                         {item.tag}
                       </span>
                     ) : null}
                   </span>
-                  <span className="shrink-0 text-[13px] whitespace-nowrap text-[#8a8a8a]">
+                  <span className="shrink-0 text-[12px] whitespace-nowrap text-[#8a8a8a]">
                     {item.period}
                   </span>
                 </div>
-                <div className="mt-1 text-[14px] text-[#9a9a9a]">
+                <div className="mt-1 text-[13px] text-[#9a9a9a]">
                   {item.company}
                 </div>
-                <p className="mt-1 text-[14px] leading-relaxed text-[#b0b0b0]">
+                <p className="mt-1 text-[13px] leading-relaxed text-[#b0b0b0]">
                   {item.summary}
                 </p>
               </div>
