@@ -39,7 +39,7 @@ export function BioCard({
       variant="page"
       layoutId={layoutId}
       className={className}
-      contentClassName="no-scrollbar flex flex-col justify-end overflow-y-auto px-6 pt-[72px] pb-2"
+      contentClassName="flex flex-col justify-end px-6 pt-[72px] pb-6"
     >
       <p className="max-w-[92%] text-[clamp(22px,2.2vw,32px)] leading-[1.35] text-[#9a9a9a]">
         {renderBio(about.bio)}

@@ -8,11 +8,12 @@ import { BioCard } from '../components/BioCard'
 import { StatsCard } from '../components/StatsCard'
 import { ExperienceCard } from '../components/ExperienceCard'
 import { SkillsCard } from '../components/SkillsCard'
-import { LinksCard } from '../components/LinksCard'
+import { about } from '../data/about'
 
-/** Route page shell — absolute so enter/exit can overlap during transitions. */
+/** Route page shell — absolute so enter/exit can overlap during transitions.
+ *  Flex column: the hero keeps its own row and the grid fills the rest. */
 const pageClass =
-  'no-scrollbar absolute inset-0 z-10 overflow-y-auto px-4 pt-4 pb-4 md:overflow-hidden md:px-5 md:pt-5 md:pb-5'
+  'no-scrollbar absolute inset-0 z-10 flex flex-col overflow-y-auto px-4 pt-4 pb-4 md:px-5 md:pt-5 md:pb-5'
 
 function BackPill() {
   return (
@@ -50,27 +51,31 @@ export function About() {
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className={pageClass}
     >
-      <Hero label="About" action={<BackPill />} compactReflection />
+      <Hero
+        label="About"
+        action={<BackPill />}
+        inFlow
+        hideReflection
+        top="clamp(36px, 5.5vh, 72px)"
+      />
 
-      <main className="relative z-10 mt-8 grid grid-cols-1 gap-4 md:absolute md:inset-x-5 md:top-[22%] md:bottom-5 md:mt-0 md:grid-cols-12 md:grid-rows-2">
-        <BioCard
-          layoutId={reduce ? undefined : 'about-card'}
-          className="min-h-[200px] md:col-span-7 md:min-h-0"
-        />
+      <main className="relative z-10 mt-6 grid w-full grid-cols-1 items-stretch gap-4 md:mt-8 md:grid-cols-2 lg:mt-10 lg:flex-1 lg:grid-cols-12 lg:grid-rows-[auto_minmax(min-content,1fr)]">
+        <div className="grid gap-4 md:col-span-2 lg:col-span-7 lg:grid-rows-[minmax(0,1fr)_minmax(148px,auto)_auto]">
+          <BioCard
+            layoutId={reduce ? undefined : 'about-card'}
+            className="min-h-[160px] lg:min-h-0"
+          />
+          <StatsCard className="min-h-[120px] lg:min-h-0" />
+          <ExperienceCard className="min-h-[180px] lg:min-h-0" />
+        </div>
 
         <PhotoCard
           parallax
-          className="aspect-[4/5] min-h-[200px] md:col-span-5 md:aspect-auto md:min-h-0"
+          links={about.links}
+          className="aspect-[4/5] min-h-[220px] md:col-span-1 md:aspect-auto md:min-h-0 lg:col-span-5"
         />
 
-        <div className="grid min-h-[180px] grid-rows-2 gap-4 md:col-span-3 md:min-h-0">
-          <StatsCard className="min-h-[120px] md:min-h-0" />
-          <LinksCard className="min-h-[120px] md:min-h-0" />
-        </div>
-
-        <ExperienceCard className="min-h-[180px] md:col-span-5 md:min-h-0" />
-
-        <SkillsCard className="min-h-[300px] md:col-span-4 md:min-h-0" />
+        <SkillsCard className="min-h-[220px] md:col-span-1 lg:col-span-12" />
       </main>
     </motion.div>
   )

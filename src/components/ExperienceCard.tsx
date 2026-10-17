@@ -27,7 +27,7 @@ export function ExperienceCard({ className = '' }: { className?: string }) {
       label="Experience"
       variant="page"
       className={className}
-      contentClassName="no-scrollbar overflow-y-auto"
+      contentClassName=""
     >
       <div className="flex h-full flex-col justify-center px-6 pt-14 pb-6">
         <ol className="flex flex-col">

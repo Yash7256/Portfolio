@@ -26,7 +26,7 @@ export function StatsCard({ className = '' }: { className?: string }) {
       <BentoCard label="Currently Cooking" variant="page" className={className}>
         <div className="flex h-full flex-col items-center justify-center gap-6 px-5 pt-14 pb-6 text-center">
           <img src="/dstext.svg" alt="" className="w-[85%]" />
-          <img src="/dslogo.svg" alt="" className="w-24" />
+          <img src="/dslogo.svg" alt="" className="w-16" />
         </div>
       </BentoCard>
     )
@@ -54,7 +54,7 @@ export function StatsCard({ className = '' }: { className?: string }) {
               key="dslogo"
               src="/dslogo.svg"
               alt=""
-              className="w-24"
+              className="w-16"
               {...fade}
             />
           )}

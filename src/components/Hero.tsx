@@ -19,14 +19,31 @@ interface HeroProps {
    * where body content sits directly beneath the hero (e.g. About's bio).
    */
   compactReflection?: boolean
+  /** Overrides the top offset (paddingTop) of the hero. */
+  top?: string
+  /**
+   * Keeps the hero in its own document row on desktop (About) instead of
+   * pinning it behind the cards. The caller supplies the row gap.
+   */
+  inFlow?: boolean
+  /** Removes the blurred mirror copy entirely (About reads it as a ghost). */
+  hideReflection?: boolean
 }
 
 /**
- * Oversized hero name. On desktop the main layer sits behind the cards (z-0)
- * and a blurred, vertically flipped mirror copy sits just below it on top of
- * the cards (z-20). On mobile it flows in-document above the stack.
+ * Oversized hero name. On the home page the main layer sits behind the cards
+ * (z-0) and a blurred, vertically flipped mirror copy sits just below it on top
+ * of the cards (z-20). With `inFlow` (About) it occupies its own row. On mobile
+ * it always flows in-document above the stack.
  */
-export function Hero({ label = NAME, action, compactReflection = false }: HeroProps) {
+export function Hero({
+  label = NAME,
+  action,
+  compactReflection = false,
+  top = heroTop,
+  inFlow = false,
+  hideReflection = false,
+}: HeroProps) {
   const reduce = useReducedMotion()
 
   const enter = reduce
@@ -36,13 +53,15 @@ export function Hero({ label = NAME, action, compactReflection = false }: HeroPr
   return (
     <section
       aria-label="Introduction"
-      className="pointer-events-none relative z-0 select-none px-4 md:absolute md:inset-x-0 md:top-0 md:z-auto md:px-6"
-      style={{ paddingTop: heroTop }}
+      className={`pointer-events-none relative z-0 shrink-0 select-none px-4 md:px-6 ${
+        inFlow ? '' : 'md:absolute md:inset-x-0 md:top-0 md:z-auto'
+      }`}
+      style={{ paddingTop: top }}
     >
       {action ? (
         <div
           className="pointer-events-auto absolute left-0 z-30 -translate-y-1/2 md:left-6"
-          style={{ top: `calc(${heroTop} + 0.5em)` }}
+          style={{ top: `calc(${top} + 0.5em)` }}
         >
           {action}
         </div>
@@ -57,12 +76,13 @@ export function Hero({ label = NAME, action, compactReflection = false }: HeroPr
         {label}
       </motion.h1>
 
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-x-0 top-full z-20 hidden md:block ${
-          compactReflection ? 'h-[56px] overflow-hidden' : ''
-        }`}
-      >
+      {hideReflection ? null : (
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-x-0 top-full z-20 hidden md:block ${
+            compactReflection ? 'h-[56px] overflow-hidden' : ''
+          }`}
+        >
         <motion.div
           {...enter}
           animate={{ opacity: 0.4, y: 0, filter: 'blur(12px)' }}
@@ -80,7 +100,8 @@ export function Hero({ label = NAME, action, compactReflection = false }: HeroPr
             {label}
           </span>
         </motion.div>
-      </div>
+        </div>
+      )}
     </section>
   )
 }

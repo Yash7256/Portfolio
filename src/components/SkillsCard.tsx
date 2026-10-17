@@ -7,7 +7,7 @@ export function SkillsCard({ className = '' }: { className?: string }) {
       label="Skills"
       variant="page"
       className={className}
-      contentClassName="thin-scrollbar flex flex-col content-start gap-3 overflow-y-auto px-5 pt-12 pb-4"
+      contentClassName="grid grid-cols-1 content-start gap-x-8 gap-y-3 px-6 pt-14 pb-6 lg:grid-cols-4"
     >
       {about.skills.map((group) => (
         <div key={group.category}>
